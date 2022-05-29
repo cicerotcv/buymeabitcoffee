@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
 import styled from 'styled-components';
-import { supportedCoins } from '../../coins';
 import { QRCode } from '../../components/QrCode';
 
 type TRouterParams = {

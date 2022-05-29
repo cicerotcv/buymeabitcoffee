@@ -1,17 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { URLSearchParams } from 'url';
+import { supportedCoins as supportedBadges } from '../../coins';
 import {
   BadgeConfig,
   BadgeParameters,
   RequestParams,
-  Style
+  Style,
 } from '../../types';
-
-import { supportedCoins as supportedBadges } from '../../coins';
 
 const errorBadge = {
   color: 'ff2000',
-  label: 'error'
+  label: 'error',
 };
 
 class URLMaker {
