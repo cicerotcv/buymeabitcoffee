@@ -4,34 +4,34 @@ This project's main purpose is to make it easier to receive support, even anonym
 
 ## Styles
 
-| flat style                                       | Markdown Code                                      |
-| ------------------------------------------------ | -------------------------------------------------- |
-| ![eth](http://localhost:3000/api/eth?style=flat) | `![eth](http://localhost:3000/api/eth?style=flat)` |
-| ![btc](http://localhost:3000/api/btc?style=flat) | `![btc](http://localhost:3000/api/btc?style=flat)` |
+| flat style                                                    | Markdown Code                                                   |
+| ------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![eth](https://buymeabitcoffee.vercel.app/api/eth?style=flat) | `![eth](https://buymeabitcoffee.vercel.app/api/eth?style=flat)` |
+| ![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat) | `![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat)` |
 
-| flat-square style                                       | Markdown Code                                             |
-| ------------------------------------------------------- | --------------------------------------------------------- |
-| ![eth](http://localhost:3000/api/eth?style=flat-square) | `![eth](http://localhost:3000/api/eth?style=flat-square)` |
-| ![btc](http://localhost:3000/api/btc?style=flat-square) | `![btc](http://localhost:3000/api/btc?style=flat-square)` |
+| flat-square style                                                    | Markdown Code                                                          |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| ![eth](https://buymeabitcoffee.vercel.app/api/eth?style=flat-square) | `![eth](https://buymeabitcoffee.vercel.app/api/eth?style=flat-square)` |
+| ![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square) | `![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)` |
 
-| for-the-badge style                                       | Markdown Code                                               |
-| --------------------------------------------------------- | ----------------------------------------------------------- |
-| ![eth](http://localhost:3000/api/eth?style=for-the-badge) | `![eth](http://localhost:3000/api/eth?style=for-the-badge)` |
-| ![btc](http://localhost:3000/api/btc?style=for-the-badge) | `![btc](http://localhost:3000/api/btc?style=for-the-badge)` |
+| for-the-badge style                                                    | Markdown Code                                                            |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| ![eth](https://buymeabitcoffee.vercel.app/api/eth?style=for-the-badge) | `![eth](https://buymeabitcoffee.vercel.app/api/eth?style=for-the-badge)` |
+| ![btc](https://buymeabitcoffee.vercel.app/api/btc?style=for-the-badge) | `![btc](https://buymeabitcoffee.vercel.app/api/btc?style=for-the-badge)` |
 
-| social style                                       | Markdown Code                                        |
-| -------------------------------------------------- | ---------------------------------------------------- |
-| ![eth](http://localhost:3000/api/eth?style=social) | `![eth](http://localhost:3000/api/eth?style=social)` |
-| ![btc](http://localhost:3000/api/btc?style=social) | `![btc](http://localhost:3000/api/btc?style=social)` |
+| social style                                                    | Markdown Code                                                     |
+| --------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ![eth](https://buymeabitcoffee.vercel.app/api/eth?style=social) | `![eth](https://buymeabitcoffee.vercel.app/api/eth?style=social)` |
+| ![btc](https://buymeabitcoffee.vercel.app/api/btc?style=social) | `![btc](https://buymeabitcoffee.vercel.app/api/btc?style=social)` |
 
 ## Usage
 
 Using like shown above, you're just proxing shield.io (nothing wrong, by the way), but you can use this badge to redirect to a QR Code page where donnors will be able to scan and send you support.
 
 ```md
-[![btc](http://localhost:3000/api/btc?style=flat-square)](http://localhost:3000/btc/123123123)
+[![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)](https://buymeabitcoffee.vercel.app/btc/123123123)
 ```
 
 Just like this:
 
-[![btc](http://localhost:3000/api/btc?style=flat-square)](http://localhost:3000/btc/15NvrWRS8DXNufF9i1xJTMmZAcxRZat8Hi)
+[![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)](https://buymeabitcoffee.vercel.app/btc/15NvrWRS8DXNufF9i1xJTMmZAcxRZat8Hi)
