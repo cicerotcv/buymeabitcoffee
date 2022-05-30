@@ -1,6 +1,6 @@
 # Buy me a bit coffee
 
-This project's main purpose is to make it easier to receive support, even anonymously from donnors around the globe. It's based on [shields.io](https://github.com/badges/shields), so you can use all available styles (as shown below).
+This project's main purpose is to make it easier to receive support, even anonymously from donors around the globe. It's based on [shields.io](https://github.com/badges/shields), so you can use all available styles (as shown below).
 
 ## Styles
 
@@ -26,7 +26,7 @@ This project's main purpose is to make it easier to receive support, even anonym
 
 ## Usage
 
-Using like shown above, you're just proxing shield.io (nothing wrong, by the way), but you can use this badge to redirect to a QR Code page where donnors will be able to scan and send you support.
+Using like shown above, you're just proxing shield.io (nothing wrong, by the way), but you can use this badge to redirect to a QR Code page where donors will be able to scan and send you support.
 
 ```md
 [![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)](https://buymeabitcoffee.vercel.app/btc/123123123)
