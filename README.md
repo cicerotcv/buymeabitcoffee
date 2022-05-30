@@ -29,7 +29,7 @@ This project's main purpose is to make it easier to receive support, even anonym
 Using like shown above, you're just proxing shield.io (nothing wrong, by the way), but you can use this badge to redirect to a QR Code page where donors will be able to scan and send you support.
 
 ```md
-[![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)](https://buymeabitcoffee.vercel.app/btc/123123123)
+[![btc](https://buymeabitcoffee.vercel.app/api/btc?style=flat-square)](https://buymeabitcoffee.vercel.app/btc/15NvrWRS8DXNufF9i1xJTMmZAcxRZat8Hi)
 ```
 
 Just like this:
