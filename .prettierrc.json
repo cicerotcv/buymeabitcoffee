@@ -1,0 +1,50 @@
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf",
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-classnames",
+    "prettier-plugin-merge"
+  ],
+  "importOrder": [
+    "^react$",
+    "^next/(.*)$",
+    "^@?\\w",
+    "^@/shared/(.*)$",
+    "^@/modules/(.*)$",
+    "^@/(.*)$",
+    "^#/(.*)$",
+    "^\\$/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true,
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "decorators-legacy",
+    "classProperties",
+    "classPrivateProperties",
+    "classPrivateMethods"
+  ],
+  "customAttributes": [],
+  "customFunctions": [
+    "clsx",
+    "cn",
+    "twMerge",
+    "cva"
+  ],
+  "endingPosition": "absolute"
+}
