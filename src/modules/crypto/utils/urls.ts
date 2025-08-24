@@ -1,29 +1,9 @@
 import { Env } from '@/env';
 import { BadgeStyle } from '@/types/badge';
 
-import { theme } from '../theme';
-
-type BadgeParams = {
-  message: string;
-  style: BadgeStyle;
-};
-
-const shieldsIoUrl = new URL('https://img.shields.io/static/v1');
-
-export const getBadgeSrc = (params: BadgeParams) => {
-  shieldsIoUrl.searchParams.set('message', params.message);
-  shieldsIoUrl.searchParams.set('color', theme.btc.color);
-  shieldsIoUrl.searchParams.set('logo', theme.btc.logo);
-  shieldsIoUrl.searchParams.set('label', theme.btc.label);
-  shieldsIoUrl.searchParams.set('style', params.style);
-
-  return shieldsIoUrl.toString();
-};
-
 type ShieldsIoParams = {
-  address: string;
   content: string;
-  style: string;
+  style?: string;
   label?: string;
 };
 
@@ -31,7 +11,6 @@ export const getShieldsIoUrl = (params: ShieldsIoParams) => {
   const searchParams = new URLSearchParams();
 
   searchParams.set('logo', 'bitcoin');
-  searchParams.set('style', params.style);
   searchParams.set(
     'logoColor',
     params.style === BadgeStyle.Social ? 'black' : 'white'
@@ -40,9 +19,8 @@ export const getShieldsIoUrl = (params: ShieldsIoParams) => {
 
   const baseUrl = `https://img.shields.io/badge`;
 
-  if (!!params.label) {
-    searchParams.set('label', params.label);
-  }
+  if (!!params.style) searchParams.set('style', params.style);
+  if (!!params.label) searchParams.set('label', params.label);
 
   return `${baseUrl}/${encodeURIComponent(params.content)}-f7931a?${searchParams.toString()}`;
 };
@@ -74,7 +52,6 @@ export const getDonationAbsoluteUrl = (params: DonationUrlParams) => {
 
 export const getMarkdown = (params: DonationUrlParams & ShieldsIoParams) => {
   const url = getShieldsIoUrl({
-    address: params.address,
     content: params.content || 'Buy Me a BitCoffee',
     label: params.label,
     style: params.style,
