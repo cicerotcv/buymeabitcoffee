@@ -27,7 +27,6 @@ export const BadgePreview = (props: BadgePreviewProps) => {
 
   const url = useMemo(() => {
     return getShieldsIoUrl({
-      address: props.address,
       content: props.content || 'Buy Me a BitCoffee',
       label: props.label,
       style: props.style,
@@ -58,7 +57,7 @@ export const BadgePreview = (props: BadgePreviewProps) => {
     <Card className="bg-card flex flex-col gap-2 rounded-md">
       <CardContent className="space-y-4">
         <Image
-          src={url || '/placeholder.svg'}
+          src={url}
           width={0}
           height={0}
           sizes="100vw"
