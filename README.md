@@ -20,34 +20,58 @@ A modern, lightweight web application for receiving Bitcoin donations with QR co
 
 ## Styles
 
-## Badge Styles
+### Badge Styles
 
 Choose from multiple shield.io styles to match your project's aesthetic. All badges link directly to a QR code page for seamless Bitcoin donations.
 
-| flat style                                                                                                                                                                                                                                 | Markdown Code                                                                                                                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw) | `[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)` |
+**flat style**
 
-| flat-square style                                                                                                                                                                                                                                 | Markdown Code                                                                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw) | `[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)` |
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
 
-| for-the-badge style                                                                                                                                                                                                                                 | Markdown Code                                                                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw) | `[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)` |
+```md
+<!-- Markdown -->
 
-| social style                                                                                                                                                                                                                                 | Markdown Code                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw) | `[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)` |
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+```
+
+**flat-square style**
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+
+```md
+<!-- Markdown -->
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+```
+
+**for-the-badge style**
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+
+```md
+<!-- Markdown -->
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+```
+
+**social style**
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+
+```md
+<!-- Markdown -->
+
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+```
 
 ## 📋 Usage
 
 Using like shown above, you're just proxying shield.io (nothing wrong, by the way), but you can use this badge to redirect to a QR Code page where donors will be able to scan and send you support.
 
-Replace `bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw` with your actual Bitcoin address:
+Replace `<your-address>` with your actual Bitcoin address :
 
 ```md
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/YOUR_BITCOIN_ADDRESS)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/<your-address>)
 ```
 
 Example with a real address:
