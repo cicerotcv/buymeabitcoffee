@@ -19,7 +19,7 @@ export const Header = async () => {
       >
         <SvgLogo className="text-btc h-8 w-fit" />
 
-        <ToggleTheme className="ml-auto" />
+        <ToggleTheme className="ml-auto" size="icon-sm"/>
 
         <nav className="hidden items-center gap-4 md:flex">
           <Link
