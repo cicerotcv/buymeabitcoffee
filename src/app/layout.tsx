@@ -1,9 +1,9 @@
 import { Geist_Mono, Inter } from 'next/font/google';
 
+import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 
-import { Env } from '@/env';
 import { QueryProvider } from '@/global/contexts/query-provider';
 import { ThemeProvider } from '@/global/contexts/theme-provider';
 
@@ -23,7 +23,10 @@ const mono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Buy me a BitCoffee - Accept Bitcoin Donations',
   description:
-    'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate badges, accept donations, and integrate with GitHub.',
+    'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate badges, accept donations and share with your community.',
+  verification: {
+    google: '3nggRK22fkg4vb5VG7i8XveFw0AHsPq4HwMP3x0O9SA',
+  },
 };
 
 async function RootLayout({
@@ -46,7 +49,9 @@ async function RootLayout({
           <QueryProvider>{children}</QueryProvider>
           <Toaster richColors />
         </ThemeProvider>
-        <SpeedInsights debug={!Env.Prod} />
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
