@@ -1,5 +1,4 @@
-import validate, { getAddressInfo, Network } from 'bitcoin-address-validation';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 import { Badge } from '$/components/ui/badge';
 import {
@@ -9,53 +8,54 @@ import {
 } from '$/components/ui/tooltip';
 import { cn } from '$/lib/utils';
 
+import { getAddressInfoSafe } from '../../utils/address-info';
+
 type Props = {
   address: string;
 };
-export const AddressVerification = (props: Props) => {
-  const info = getAddressInfo(props.address);
 
-  const isBech32 = info.bech32;
-  const isValid = validate(props.address);
-  const isMainnet = info.network === Network.mainnet;
+export const AddressInfo = (props: Props) => {
+  const info = getAddressInfoSafe(props.address);
 
   return (
-    <div className={cn('flex gap-2 select-none')}>
+    <div className={cn('flex flex-row flex-wrap gap-1 select-none sm:gap-2')}>
       <Tooltip>
         <TooltipTrigger>
           <Badge
-            variant={isValid ? 'outline' : 'destructive'}
+            variant={info.isValid ? 'outline' : 'destructive'}
             className={cn({
-              'bg-green-400/10 text-green-500 dark:text-green-400': isValid,
+              'bg-green-400/10 text-green-500 dark:text-green-400':
+                info.isValid,
             })}
           >
-            {isValid ? <CheckCircle2 /> : <XCircle />}
+            {info.isValid ? <Check /> : <X />}
             BTC address
           </Badge>
         </TooltipTrigger>
 
         <TooltipContent>
-          {isValid
+          {info.isValid
             ? 'Valid BTC address'
-            : 'There may be a problem with the BTC address'}
+            : 'The address is not recognized as a valid BTC address'}
         </TooltipContent>
       </Tooltip>
 
       <Tooltip>
         <TooltipTrigger>
           <Badge
-            variant={isBech32 ? 'outline' : 'destructive'}
+            variant={info.isBech32 ? 'outline' : 'destructive'}
             className={cn({
-              'bg-green-400/10 text-green-500 dark:text-green-400': isBech32,
+              'bg-green-400/10 text-green-500 dark:text-green-400':
+                info.isBech32,
             })}
           >
-            {isBech32 ? <CheckCircle2 /> : <XCircle />}
+            {info.isBech32 ? <Check /> : <X />}
             Bech32
           </Badge>
         </TooltipTrigger>
 
         <TooltipContent>
-          {isBech32 ? (
+          {info.isBech32 ? (
             'Valid Bech32 address'
           ) : (
             <>
@@ -68,18 +68,19 @@ export const AddressVerification = (props: Props) => {
       <Tooltip>
         <TooltipTrigger>
           <Badge
-            variant={isMainnet ? 'outline' : 'destructive'}
+            variant={info.isMainnet ? 'outline' : 'destructive'}
             className={cn({
-              'bg-green-400/10 text-green-500 dark:text-green-400': isMainnet,
+              'bg-green-400/10 text-green-500 dark:text-green-400':
+                info.isMainnet,
             })}
           >
-            {isMainnet ? <CheckCircle2 /> : <XCircle />}
+            {info.isMainnet ? <Check /> : <X />}
             Mainnet
           </Badge>
         </TooltipTrigger>
 
         <TooltipContent>
-          {isMainnet
+          {info.isMainnet
             ? 'Valid Mainnet address'
             : 'This address is not for the Bitcoin Mainnet'}
         </TooltipContent>

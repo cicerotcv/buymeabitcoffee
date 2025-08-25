@@ -4,12 +4,14 @@ import { useMemo, useState } from 'react';
 
 import Link from 'next/link';
 
-import { Check, Copy, QrCode } from 'lucide-react';
-import { toast } from 'sonner';
+import { AlertTriangle, QrCode } from 'lucide-react';
 
 import { useLiveQuotation } from '@/modules/crypto/hooks/live-quotation';
 import { fmtBtcAddress } from '@/modules/crypto/utils/btc-address.fmt';
 
+import { CopyButton } from '@/global/components/copy-button';
+
+import { Alert, AlertDescription, AlertTitle } from '$/components/ui/alert';
 import { Button } from '$/components/ui/button';
 import {
   Card,
@@ -20,7 +22,8 @@ import {
 } from '$/components/ui/card';
 import { Label } from '$/components/ui/label';
 
-import { AddressVerification } from './address-verification';
+import { getAddressInfoSafe } from '../../utils/address-info';
+import { AddressInfo } from './address-verification';
 import { DonationQrCode } from './qr-code';
 
 type Props = {
@@ -29,9 +32,12 @@ type Props = {
 };
 
 export const DonationCard = (props: Props) => {
-  const [copied, setCopied] = useState(false);
-
   const [value, setValue] = useState<number>();
+
+  const addressInfo = useMemo(
+    () => getAddressInfoSafe(props.address),
+    [props.address]
+  );
 
   const query = useLiveQuotation(value, !!value);
 
@@ -44,17 +50,6 @@ export const DonationCard = (props: Props) => {
       value: value ? usdPriceInBtc : undefined,
     });
   }, [value, props.address, props.identifier, query.data]);
-
-  const copyAddress = async () => {
-    try {
-      await navigator.clipboard.writeText(url.href);
-      setCopied(true);
-      toast.success('Address copied to clipboard!');
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy address:', err);
-    }
-  };
 
   return (
     <Card>
@@ -75,13 +70,24 @@ export const DonationCard = (props: Props) => {
           content={url.href}
         />
 
+        {!addressInfo.isValid && (
+          <Alert className="bg-orange-600/10 text-orange-500">
+            <AlertTriangle />
+            <AlertTitle>Warning</AlertTitle>
+            <AlertDescription>
+              The provided address is not recognized as a valid Bitcoin address.
+              Please double-check the address before sending any funds.
+            </AlertDescription>
+          </Alert>
+        )}
+
         <div className="space-y-2">
           <Label className="text-foreground text-sm font-medium">
             Address:
           </Label>
 
           <div className="flex flex-col gap-2">
-            <AddressVerification address={props.address} />
+            <AddressInfo address={props.address} />
 
             <div
               className="bg-muted text-muted-foreground flex-1 rounded-md p-3
@@ -92,14 +98,13 @@ export const DonationCard = (props: Props) => {
               {url.search}
             </div>
 
-            <Button size="sm" variant="outline" onClick={copyAddress}>
+            <CopyButton
+              size="sm"
+              variant="outline"
+              contentSource={() => url.href}
+            >
               Copy
-              {copied ? (
-                <Check className="text-green-500" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-            </Button>
+            </CopyButton>
           </div>
         </div>
 
@@ -144,6 +149,7 @@ export const DonationCard = (props: Props) => {
               size="sm"
               className="text-sm"
               onClick={() => setValue(undefined)}
+              disabled={value === undefined}
             >
               Clear
             </Button>

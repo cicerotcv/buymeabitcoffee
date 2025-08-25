@@ -3,14 +3,13 @@
 import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { validate } from 'bitcoin-address-validation';
 import { capitalCase } from 'change-case';
 import { ExternalLink, Info } from 'lucide-react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import z from 'zod';
 
 import { Env } from '@/env';
 import { ButtonLink } from '@/global/components/button-link';
+import { CopyButton } from '@/global/components/copy-button';
 import { TextInput } from '@/global/components/text-input';
 import { BadgeStyle } from '@/types/badge';
 
@@ -38,25 +37,12 @@ import {
   TooltipTrigger,
 } from '$/components/ui/tooltip';
 
-import { getDonationPath } from '../crypto/utils/urls';
+import { getDonationPath, getDonationUrl } from '../crypto/utils/urls';
 import { DonationCard } from '../donation/components/donation-card';
 import { BadgePreview } from './badge-preview';
+import { parser, Schema } from './configuration-parser';
 
-const parser = z.object({
-  style: z.nativeEnum(BadgeStyle),
-  identifier: z.string().min(2).max(100),
-  btcAddress: z
-    .string()
-    .min(42)
-    .max(42)
-    .refine((value) => validate(value)),
-  label: z.string().min(2).max(32).optional().or(z.literal('')),
-  content: z.string().min(2).max(32),
-});
-
-type Schema = z.infer<typeof parser>;
-
-export const ConfigurePageForm = () => {
+export const ConfigurationForm = () => {
   const form = useForm<Schema>({
     defaultValues: {
       style: BadgeStyle.Flat,
@@ -91,7 +77,7 @@ export const ConfigurePageForm = () => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 px-2 sm:px-4">
         <FormProvider {...form}>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
@@ -228,22 +214,38 @@ export const ConfigurePageForm = () => {
               />
             </div>
 
-            <Label>What others will see:</Label>
-            <DonationCard
-              address={params.btcAddress}
-              identifier={params.identifier}
-            />
+            <div className="space-y-2">
+              <Label>What others will see:</Label>
+              <DonationCard
+                address={params.btcAddress}
+                identifier={params.identifier}
+              />
+            </div>
 
-            <ButtonLink
-              href={getDonationPath({
-                address: params.btcAddress,
-                identifier: params.identifier,
-              })}
-              className="w-full"
-              variant="default"
-            >
-              See the Donation Page <ExternalLink />
-            </ButtonLink>
+            <div className="flex flex-col gap-2">
+              <CopyButton
+                variant="outline"
+                contentSource={() =>
+                  getDonationUrl({
+                    address: params.btcAddress,
+                    identifier: params.identifier,
+                  })
+                }
+              >
+                Copy your Donation Link
+              </CopyButton>
+
+              <ButtonLink
+                href={getDonationPath({
+                  address: params.btcAddress,
+                  identifier: params.identifier,
+                })}
+                className="w-full"
+                variant="ghost"
+              >
+                See the Donation Page <ExternalLink />
+              </ButtonLink>
+            </div>
           </div>
         )}
       </CardContent>

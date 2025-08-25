@@ -44,7 +44,7 @@ export const getDonationPath = (params: DonationUrlParams) => {
   return basePath;
 };
 
-export const getDonationAbsoluteUrl = (params: DonationUrlParams) => {
+export const getDonationUrl = (params: DonationUrlParams) => {
   const path = getDonationPath(params);
 
   return `${Env.VercelUrl}${path}`;
@@ -57,7 +57,7 @@ export const getMarkdown = (params: DonationUrlParams & ShieldsIoParams) => {
     style: params.style,
   });
 
-  const donationUrl = getDonationAbsoluteUrl({
+  const donationUrl = getDonationUrl({
     address: params.address,
     identifier: params.identifier,
   });

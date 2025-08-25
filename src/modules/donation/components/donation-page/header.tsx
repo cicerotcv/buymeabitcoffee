@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 
-import { Coffee } from 'lucide-react';
-
+import { SvgLogo } from '@/global/components/logo';
 import { ToggleTheme } from '@/global/components/toggle-theme';
 
 import { Badge } from '$/components/ui/badge';
@@ -24,15 +23,15 @@ export const DonationPageHeader = async (props: Props) => {
           className="text-btc flex items-center gap-2 transition-opacity
             select-none hover:opacity-80"
         >
-          <Coffee className="size-8" />
-          <span className="text-lg font-bold">Buy me a BitCoffee</span>
+          <SvgLogo className="text-btc h-8 w-fit" />
         </Link>
 
-        <div className="flex items-center gap-4">
-          <Badge variant="secondary" className="text-sm">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Badge variant="secondary" className="text-xs sm:text-sm">
             {props.displayName}
           </Badge>
-          <ToggleTheme />
+
+          <ToggleTheme size="icon-sm" />
         </div>
       </div>
     </header>

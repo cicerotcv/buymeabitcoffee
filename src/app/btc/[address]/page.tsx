@@ -1,12 +1,11 @@
 'use server';
 
-import { Coffee } from 'lucide-react';
-
 import { DonationCard } from '@/modules/donation/components/donation-card';
 import { DonationPageFooter } from '@/modules/donation/components/donation-page/footer';
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
 
+import { SvgIcon } from '@/global/components/icon';
 import { PageContainer } from '@/global/components/page-container';
 import { NextPage } from '@/types/next';
 
@@ -33,7 +32,7 @@ const DonationPage: NextPage<Params, Query> = async ({
               className="bg-primary mx-auto mb-4 flex h-20 w-20 items-center
                 justify-center rounded-full"
             >
-              <Coffee className="text-primary-foreground h-10 w-10" />
+              <SvgIcon className="text-primary-foreground size-10" />
             </div>
             <h1 className="text-foreground mb-2 text-3xl font-bold">
               Support{' '}

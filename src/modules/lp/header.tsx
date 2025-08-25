@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 
-import { Coffee, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
+import { SvgLogo } from '@/global/components/logo';
 
 import { ButtonLink } from '../../global/components/button-link';
 import { ToggleTheme } from '../../global/components/toggle-theme';
@@ -16,10 +17,7 @@ export const Header = async () => {
         className="container mx-auto flex items-center justify-between gap-4
           px-2 py-4 sm:px-4"
       >
-        <div className="text-btc flex items-center gap-2 select-none">
-          <Coffee className="size-8" />
-          <span className="text-lg font-bold">Buy me a BitCoffee</span>
-        </div>
+        <SvgLogo className="text-btc h-8 w-fit" />
 
         <ToggleTheme className="ml-auto" />
 
@@ -30,13 +28,6 @@ export const Header = async () => {
               transition-colors"
           >
             Features
-          </Link>
-          <Link
-            href="#get-started"
-            className="text-muted-foreground hover:text-foreground
-              transition-colors"
-          >
-            Demo
           </Link>
 
           <Link
