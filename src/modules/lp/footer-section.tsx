@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 
-import { Coffee, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
+import { SvgLogo } from '@/global/components/logo';
 
 import { getDonationPath } from '../crypto/utils/urls';
 
@@ -12,11 +13,11 @@ export const FooterSection = async () => {
   return (
     <footer className="border-border border-t px-2 py-12 sm:px-4">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-between md:flex-row">
-          <div className="text-btc mb-4 flex items-center gap-2 md:mb-0">
-            <Coffee className="size-6" />
-            <span className="font-semibold">Buy me a BitCoffee</span>
-          </div>
+        <div
+          className="flex flex-col items-center justify-between gap-2
+            md:flex-row"
+        >
+          <SvgLogo className="text-btc h-10 w-auto" />
 
           <div className="flex items-center gap-4">
             <Link

@@ -1,15 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import Image from 'next/image';
 
-import { Check, Copy } from 'lucide-react';
-import { toast } from 'sonner';
-
+import { CopyButton } from '@/global/components/copy-button';
 import { BadgeStyle } from '@/types/badge';
 
-import { Button } from '$/components/ui/button';
 import { Card, CardContent } from '$/components/ui/card';
 
 import { getMarkdown, getShieldsIoUrl } from '../crypto/utils/urls';
@@ -23,8 +20,6 @@ type BadgePreviewProps = {
 };
 
 export const BadgePreview = (props: BadgePreviewProps) => {
-  const [copied, setCopied] = useState(false);
-
   const url = useMemo(() => {
     return getShieldsIoUrl({
       content: props.content || 'Buy Me a BitCoffee',
@@ -44,14 +39,6 @@ export const BadgePreview = (props: BadgePreviewProps) => {
       }),
     [props]
   );
-
-  const copyBadgeMarkdown = () => {
-    navigator.clipboard.writeText(markdown).then(() => {
-      setCopied(true);
-      toast.success('Markdown copied to clipboard!');
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
 
   return (
     <Card className="bg-card flex flex-col gap-2 rounded-md">
@@ -73,15 +60,14 @@ export const BadgePreview = (props: BadgePreviewProps) => {
           {markdown}
         </div>
 
-        <Button
+        <CopyButton
           variant="outline"
           size="sm"
-          onClick={copyBadgeMarkdown}
           className="w-full"
+          contentSource={markdown}
         >
-          Copy Markdown{' '}
-          {copied ? <Check className="text-green-500" /> : <Copy />}
-        </Button>
+          Copy Markdown
+        </CopyButton>
       </CardContent>
     </Card>
   );

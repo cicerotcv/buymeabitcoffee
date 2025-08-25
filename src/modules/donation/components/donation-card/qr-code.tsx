@@ -1,9 +1,8 @@
 'use client';
 
-import { Bitcoin, Loader2 } from 'lucide-react';
-import QRCode from 'react-qr-code';
+import { QrcodeCanvas } from 'react-qrcode-pretty';
 
-import { Skeleton } from '$/components/ui/skeleton';
+import { SvgLogo } from '@/global/components/logo';
 
 type Props = {
   fetching?: boolean;
@@ -13,40 +12,41 @@ type Props = {
 export const DonationQrCode = (props: Props) => {
   return (
     <div
-      className="relative mx-auto flex w-fit justify-center rounded-md border-4
-        p-4"
+      className="relative mx-auto flex aspect-square size-72 w-fit max-w-full
+        justify-center border-4 p-4"
     >
       <div
-        className="border-card absolute top-1/2 -right-1 -left-1 z-0 h-3/4
-          -translate-y-1/2 border-x-4"
+        className="border-card absolute top-1/2 -right-1.25 -left-1.25 z-0 h-3/4
+          -translate-y-1/2 border-x-6"
       />
 
       <div
-        className="border-card absolute -top-1 -bottom-1 left-1/2 z-0 w-3/4
-          -translate-x-1/2 border-y-4"
+        className="border-card absolute -top-1.25 -bottom-1.25 left-1/2 z-0
+          w-3/4 -translate-x-1/2 border-y-6"
       />
 
-      {(props.pending && props.fetching) || !props.content ? (
-        <Skeleton className="size-72" />
-      ) : (
-        <QRCode
-          value={props.content}
-          bgColor="#ffffff"
-          fgColor="#000000"
-          className="size-72 rounded-sm bg-white p-4"
-        />
-      )}
+      <QrcodeCanvas
+        value={props.content || ''}
+        padding={24}
+        variant={{
+          eyes: 'fluid',
+          body: 'dots',
+        }}
+        color={{
+          eyes: 'black',
+          body: 'black',
+        }}
+        bgRounded
+        level="M"
+        bgColor="white"
+      />
 
       <div
-        className="bg-btc absolute top-1/2 left-1/2 flex size-16 -translate-1/2
-          items-center justify-center rounded-lg border-2 border-white
+        className="bg-btc absolute top-1/2 left-1/2 flex w-fit -translate-1/2
+          items-center justify-center rounded-lg border-2 border-white p-2
           text-white"
       >
-        {props.fetching ? (
-          <Loader2 className="animate-spin" />
-        ) : (
-          <Bitcoin className="size-8" />
-        )}
+        <SvgLogo className="h-6 w-fit" />
       </div>
     </div>
   );
