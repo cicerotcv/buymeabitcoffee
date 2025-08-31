@@ -18,6 +18,11 @@ export const CopyButton = ({ children, contentSource, ...props }: Props) => {
     const content =
       typeof contentSource === 'function' ? contentSource() : contentSource;
 
+    if (!window.isSecureContext)
+      return toast.info('Clipboard access is not secure', {
+        description: 'Please ensure the site is accessed over HTTPS.',
+      });
+
     navigator?.clipboard?.writeText(content).then(
       () => {
         setCopied(true);
