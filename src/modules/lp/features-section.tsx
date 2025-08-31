@@ -12,11 +12,14 @@ import {
 
 export const FeaturesSection = async () => {
   return (
-    <section id="features" className="bg-card px-2 py-20 sm:px-4">
+    <section
+      id="features"
+      className="bg-accent dark:bg-card px-2 py-20 sm:px-4"
+    >
       <div className="container mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-card-foreground mb-4 text-4xl font-bold">
-            Why Choose <span className="italic">Buy Me a BitCoffee</span>?
+            Why Buy Me a BitCoffee?
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
             Built by developers, for developers. Open-source, secure, free, and

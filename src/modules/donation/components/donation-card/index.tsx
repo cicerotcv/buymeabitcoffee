@@ -71,7 +71,7 @@ export const DonationCard = (props: Props) => {
         />
 
         {!addressInfo.isValid && (
-          <Alert className="bg-orange-600/10 text-orange-500">
+          <Alert className="text-btc bg-btc/10">
             <AlertTriangle />
             <AlertTitle>Warning</AlertTitle>
             <AlertDescription>

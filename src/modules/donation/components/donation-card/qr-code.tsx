@@ -2,7 +2,7 @@
 
 import { QrcodeCanvas } from 'react-qrcode-pretty';
 
-import { SvgLogo } from '@/global/components/logo';
+import { SvgLogo } from '@/global/svg/project-logo';
 
 type Props = {
   fetching?: boolean;
@@ -28,6 +28,11 @@ export const DonationQrCode = (props: Props) => {
       <QrcodeCanvas
         value={props.content || ''}
         padding={24}
+        internalProps={{
+          className:
+            'group data-[fetching=true]:opacity-80 bg-white rounded-md transition-all',
+          ['data-fetching' as string]: props.fetching,
+        }}
         variant={{
           eyes: 'fluid',
           body: 'dots',
@@ -37,13 +42,13 @@ export const DonationQrCode = (props: Props) => {
           body: 'black',
         }}
         bgRounded
-        level="M"
+        level="Q"
         bgColor="white"
       />
 
       <div
         className="bg-btc absolute top-1/2 left-1/2 flex w-fit -translate-1/2
-          items-center justify-center rounded-lg border-2 border-white p-2
+          items-center justify-center rounded-md border-3 border-white p-2
           text-white"
       >
         <SvgLogo className="h-6 w-fit" />

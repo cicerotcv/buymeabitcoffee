@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
-import { SvgLogo } from '@/global/components/logo';
+import { SvgLogo } from '@/global/svg/project-logo';
 
 import { ButtonLink } from '../../global/components/button-link';
 import { ToggleTheme } from '../../global/components/toggle-theme';
@@ -19,7 +19,7 @@ export const Header = async () => {
       >
         <SvgLogo className="text-btc h-8 w-fit" />
 
-        <ToggleTheme className="ml-auto" size="icon-sm"/>
+        <ToggleTheme className="ml-auto" size="icon-sm" />
 
         <nav className="hidden items-center gap-4 md:flex">
           <Link

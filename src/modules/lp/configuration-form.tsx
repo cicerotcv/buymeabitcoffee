@@ -3,15 +3,13 @@
 import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { capitalCase } from 'change-case';
 import { ExternalLink, Info } from 'lucide-react';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { Env } from '@/env';
 import { ButtonLink } from '@/global/components/button-link';
 import { CopyButton } from '@/global/components/copy-button';
 import { TextInput } from '@/global/components/text-input';
-import { BadgeStyle } from '@/types/badge';
 
 import { Button } from '$/components/ui/button';
 import {
@@ -23,29 +21,19 @@ import {
 } from '$/components/ui/card';
 import { Label } from '$/components/ui/label';
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '$/components/ui/select';
-import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '$/components/ui/tooltip';
 
+import { BadgeCard } from '../badge/components/badge-card';
 import { getDonationPath, getDonationUrl } from '../crypto/utils/urls';
 import { DonationCard } from '../donation/components/donation-card';
-import { BadgePreview } from './badge-preview';
 import { parser, Schema } from './configuration-parser';
 
 export const ConfigurationForm = () => {
   const form = useForm<Schema>({
     defaultValues: {
-      style: BadgeStyle.Flat,
       identifier: 'Buy Me a BitCoffee',
       btcAddress: Env.ExampleBtcAddress,
       content: 'Buy Me a BitCoffee',
@@ -79,65 +67,23 @@ export const ConfigurationForm = () => {
 
       <CardContent className="space-y-4 px-2 sm:px-4">
         <FormProvider {...form}>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="identifier">
-                Identifier or username{' '}
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Info className="size-3" />
-                  </TooltipTrigger>
+          <div className="space-y-2">
+            <Label htmlFor="identifier">
+              Identifier or username{' '}
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="size-3" />
+                </TooltipTrigger>
 
-                  <TooltipContent className="max-w-prose">
-                    This is the identifier or username that will be displayed on
-                    the donation page and used as a self note on the
-                    donor&apos;s transaction.
-                  </TooltipContent>
-                </Tooltip>
-              </Label>
+                <TooltipContent className="max-w-prose">
+                  This is the identifier or username that will be displayed on
+                  the donation page and used as a self note on the donor&apos;s
+                  transaction.
+                </TooltipContent>
+              </Tooltip>
+            </Label>
 
-              <TextInput id="identifier" name="identifier" placeholder="" />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="style">Badge Style</Label>
-
-              <Controller
-                name="style"
-                control={form.control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="for-the-badge" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Style</SelectLabel>
-                        <SelectItem value={BadgeStyle.Flat}>
-                          {capitalCase(BadgeStyle.Flat)}
-                        </SelectItem>
-                        <SelectItem value={BadgeStyle.FlatSquare}>
-                          {capitalCase(BadgeStyle.FlatSquare)}
-                        </SelectItem>
-                        <SelectItem value={BadgeStyle.ForTheBadge}>
-                          {capitalCase(BadgeStyle.ForTheBadge)}
-                        </SelectItem>
-                        <SelectItem value={BadgeStyle.Social}>
-                          {capitalCase(BadgeStyle.Social)}
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-
-              <p className="text-muted-foreground text-sm"></p>
-            </div>
+            <TextInput id="identifier" name="identifier" placeholder="" />
           </div>
 
           <div className="space-y-2">
@@ -203,10 +149,7 @@ export const ConfigurationForm = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Markdown:</Label>
-
-              <BadgePreview
-                style={params.style}
+              <BadgeCard
                 address={params.btcAddress}
                 label={params.label}
                 content={params.content}
@@ -214,8 +157,11 @@ export const ConfigurationForm = () => {
               />
             </div>
 
+            <div className="text-center">
+              <p className="mb-2 text-sm font-medium">Your Donation Card:</p>
+            </div>
+
             <div className="space-y-2">
-              <Label>What others will see:</Label>
               <DonationCard
                 address={params.btcAddress}
                 identifier={params.identifier}

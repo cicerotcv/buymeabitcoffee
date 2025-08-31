@@ -1,13 +1,17 @@
 'use server';
 
+import { Suspense } from 'react';
+
 import { DonationCard } from '@/modules/donation/components/donation-card';
 import { DonationPageFooter } from '@/modules/donation/components/donation-page/footer';
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
 
-import { SvgIcon } from '@/global/components/icon';
 import { PageContainer } from '@/global/components/page-container';
+import { SvgIcon } from '@/global/svg/project-icon';
 import { NextPage } from '@/types/next';
+
+import { Skeleton } from '$/components/ui/skeleton';
 
 type Params = { address: string };
 type Query = { identifier?: string };
@@ -45,10 +49,16 @@ const DonationPage: NextPage<Params, Query> = async ({
             </p>
           </div>
 
-          <DonationCard
-            address={address}
-            identifier={identifier || 'Donation from Buy Me a BitCoffee'}
-          />
+          <Suspense
+            fallback={
+              <Skeleton className="border-card aspect-[2/3] w-full rounded-2xl" />
+            }
+          >
+            <DonationCard
+              address={address}
+              identifier={identifier || 'Donation from Buy Me a BitCoffee'}
+            />
+          </Suspense>
 
           <DonationPageInstruction />
 

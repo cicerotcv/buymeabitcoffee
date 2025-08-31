@@ -26,42 +26,42 @@ Choose from multiple shield.io styles to match your project's aesthetic. All bad
 
 **flat style**
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 
 ```md
 <!-- Markdown -->
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 ```
 
 **flat-square style**
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 
 ```md
 <!-- Markdown -->
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=flat-square&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 ```
 
 **for-the-badge style**
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 
 ```md
 <!-- Markdown -->
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=for-the-badge&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 ```
 
 **social style**
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 
 ```md
 <!-- Markdown -->
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 ```
 
 ## 📋 Usage
@@ -116,7 +116,7 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-The app will be available at [https://buymeabitcoffee.vercel.app](https://buymeabitcoffee.vercel.app).
+The app will be available at [http://localhost:3000/](http://localhost:3000/).
 
 ### Building for Production
 
@@ -163,7 +163,6 @@ This project is open source and available under the [GNU General Public License 
 - **Language**: TypeScript 5.x
 - **Styling**: Tailwind CSS 4.x
 - **UI Components**: shadcn/ui with Radix UI primitives
-- **QR Code**: react-qr-code
 - **Form Handling**: React Hook Form with Zod validation
 - **State Management**: TanStack Query
 - **Theme**: next-themes for dark mode support

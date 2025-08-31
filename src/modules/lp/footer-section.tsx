@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
-import { SvgLogo } from '@/global/components/logo';
+import { SvgLogo } from '@/global/svg/project-logo';
 
 import { getDonationPath } from '../crypto/utils/urls';
 

@@ -1,5 +1,9 @@
 'use server';
 
+import { Suspense } from 'react';
+
+import { Skeleton } from '$/components/ui/skeleton';
+
 import { ConfigurationForm } from './configuration-form';
 
 export const GetStartedSection = async () => {
@@ -16,7 +20,13 @@ export const GetStartedSection = async () => {
           </p>
         </div>
 
-        <ConfigurationForm />
+        <Suspense
+          fallback={
+            <Skeleton className="border-card aspect-[2/3] w-full rounded-2xl" />
+          }
+        >
+          <ConfigurationForm />
+        </Suspense>
       </div>
     </section>
   );
