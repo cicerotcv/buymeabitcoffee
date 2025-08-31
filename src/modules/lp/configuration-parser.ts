@@ -1,10 +1,7 @@
 import validate from 'bitcoin-address-validation';
 import { z } from 'zod';
 
-import { BadgeStyle } from '@/types/badge';
-
 export const parser = z.object({
-  style: z.nativeEnum(BadgeStyle),
   identifier: z.string().min(2).max(100),
   btcAddress: z
     .string()

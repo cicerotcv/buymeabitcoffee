@@ -1,18 +1,20 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import Image from 'next/image';
+
+import { capitalCase } from 'change-case';
 
 import { CopyButton } from '@/global/components/copy-button';
 import { BadgeStyle } from '@/types/badge';
 
 import { Card, CardContent } from '$/components/ui/card';
+import { Tabs, TabsList, TabsTrigger } from '$/components/ui/tabs';
 
 import { getMarkdown, getShieldsIoUrl } from '../crypto/utils/urls';
 
 type BadgePreviewProps = {
-  style: BadgeStyle;
   address: string;
   content?: string;
   label?: string;
@@ -20,13 +22,15 @@ type BadgePreviewProps = {
 };
 
 export const BadgePreview = (props: BadgePreviewProps) => {
+  const [style, setStyle] = useState(BadgeStyle.Flat);
+
   const url = useMemo(() => {
     return getShieldsIoUrl({
       content: props.content || 'Buy Me a BitCoffee',
       label: props.label,
-      style: props.style,
+      style: style,
     });
-  }, [props]);
+  }, [props, style]);
 
   const markdown = useMemo(
     () =>
@@ -34,15 +38,35 @@ export const BadgePreview = (props: BadgePreviewProps) => {
         address: props.address,
         content: props.content || 'Buy Me a BitCoffee',
         label: props.label,
-        style: props.style,
         identifier: props.identifier,
+        style,
       }),
-    [props]
+    [props, style]
   );
 
   return (
     <Card className="bg-card flex flex-col gap-2 rounded-md">
       <CardContent className="space-y-4">
+        <Tabs
+          value={style}
+          onValueChange={(style) => setStyle(style as BadgeStyle)}
+        >
+          <TabsList className="w-full">
+            <TabsTrigger value={BadgeStyle.Flat}>
+              {capitalCase(BadgeStyle.Flat)}
+            </TabsTrigger>
+            <TabsTrigger value={BadgeStyle.FlatSquare}>
+              {capitalCase(BadgeStyle.FlatSquare)}
+            </TabsTrigger>
+            <TabsTrigger value={BadgeStyle.ForTheBadge}>
+              {capitalCase(BadgeStyle.ForTheBadge)}
+            </TabsTrigger>
+            <TabsTrigger value={BadgeStyle.Social}>
+              {capitalCase(BadgeStyle.Social)}
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+
         <Image
           src={url}
           width={0}
