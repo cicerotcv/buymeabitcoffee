@@ -7,8 +7,8 @@ import { DonationPageFooter } from '@/modules/donation/components/donation-page/
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
 
-import { SvgIcon } from '@/global/components/icon';
 import { PageContainer } from '@/global/components/page-container';
+import { SvgIcon } from '@/global/svg/project-icon';
 import { NextPage } from '@/types/next';
 
 import { Skeleton } from '$/components/ui/skeleton';

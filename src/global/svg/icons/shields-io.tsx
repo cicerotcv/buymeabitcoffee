@@ -1,0 +1,15 @@
+import * as React from 'react';
+import { SVGProps } from 'react';
+
+const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <title>{'Shields.io'}</title>
+    <path d="M19 0a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H5l-.257-.007A5 5 0 0 1 0 19V5a5 5 0 0 1 5-5zm-7 21h7a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-7z" />
+  </svg>
+);
+export { SvgComponent as ShieldsIoIcon };

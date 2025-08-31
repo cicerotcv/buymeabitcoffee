@@ -2,7 +2,7 @@
 
 import { QrcodeCanvas } from 'react-qrcode-pretty';
 
-import { SvgLogo } from '@/global/components/logo';
+import { SvgLogo } from '@/global/svg/project-logo';
 
 type Props = {
   fetching?: boolean;

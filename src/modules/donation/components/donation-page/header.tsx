@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 
-import { SvgLogo } from '@/global/components/logo';
 import { ToggleTheme } from '@/global/components/toggle-theme';
+import { SvgLogo } from '@/global/svg/project-logo';
 
 import { Badge } from '$/components/ui/badge';
 

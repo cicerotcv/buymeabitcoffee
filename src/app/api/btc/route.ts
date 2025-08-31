@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getShieldsIoUrl } from '@/modules/crypto/utils/urls';
+import { getShieldsUrl } from '@/modules/crypto/utils/shields';
 
 import { BadgeStyle } from '@/types/badge';
 
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const shieldsUrl = getShieldsIoUrl({
+    const shieldsUrl = getShieldsUrl({
       content,
       style,
       label,
