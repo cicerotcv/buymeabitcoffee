@@ -56,7 +56,7 @@ Choose from multiple shield.io styles to match your project's aesthetic. All bad
 
 **social style**
 
-[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=white&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
+[![buy-me-a-bitcoffee](https://img.shields.io/badge/Buy%20Me%20a%20BitCoffee-f7931a?logo=bitcoin&style=social&logoColor=black&color=f7931a&label=Donate)](https://buymeabitcoffee.vercel.app/btc/your-on-chain-btc-address)
 
 ```md
 <!-- Markdown -->
