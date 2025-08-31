@@ -1,15 +1,18 @@
 'use client';
 
+import { PropsWithChildren } from 'react';
+
 import { QrcodeCanvas } from 'react-qrcode-pretty';
 
-import { SvgLogo } from '@/global/svg/project-logo';
+import { BitcoinIcon } from '@/global/svg/icons/bitcoin';
 
 type Props = {
   fetching?: boolean;
   pending?: boolean;
   content?: string;
 };
-export const DonationQrCode = (props: Props) => {
+
+export const DonationQrCode = (props: PropsWithChildren<Props>) => {
   return (
     <div
       className="relative mx-auto flex aspect-square size-72 w-fit max-w-full
@@ -48,10 +51,10 @@ export const DonationQrCode = (props: Props) => {
 
       <div
         className="bg-btc absolute top-1/2 left-1/2 flex w-fit -translate-1/2
-          items-center justify-center rounded-md border-3 border-white p-2
-          text-white"
+          flex-col items-center justify-center rounded-md border-3 border-white
+          p-2 text-white"
       >
-        <SvgLogo className="h-6 w-fit" />
+        <BitcoinIcon className="size-10 text-white" />
       </div>
     </div>
   );
