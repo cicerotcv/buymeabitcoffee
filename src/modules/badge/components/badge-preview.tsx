@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import Image from 'next/image';
 
-import { getShieldsUrl } from '@/modules/crypto/utils/shields';
+import { getShieldsUrl } from '@/modules/badge/utils/shields';
 
 import { BadgeStyle } from '@/types/badge';
 
