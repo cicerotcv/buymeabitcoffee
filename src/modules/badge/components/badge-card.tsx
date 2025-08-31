@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react';
 
 import { capitalCase } from 'change-case';
 
+import { getHtmlCode, getMarkdown } from '@/modules/crypto/utils/badge';
+
 import { CodeBlock } from '@/global/components/code-block';
 import { CopyButton } from '@/global/components/copy-button';
 import { HtmlIcon } from '@/global/svg/icons/html';
@@ -20,7 +22,6 @@ import {
 } from '$/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '$/components/ui/tabs';
 
-import { getHtmlCode, getMarkdown } from '../crypto/utils/badge';
 import { BadgePreview } from './badge-preview';
 
 type Props = {
