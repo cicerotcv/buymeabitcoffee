@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 
 import { Env } from '@/env';
 
+export const contentType = 'application/xml';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
