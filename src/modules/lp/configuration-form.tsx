@@ -28,7 +28,7 @@ import {
 
 import { getDonationPath, getDonationUrl } from '../crypto/utils/urls';
 import { DonationCard } from '../donation/components/donation-card';
-import { BadgePreview } from './badge-preview';
+import { BadgeCard } from './badge-card';
 import { parser, Schema } from './configuration-parser';
 
 export const ConfigurationForm = () => {
@@ -149,9 +149,7 @@ export const ConfigurationForm = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Markdown:</Label>
-
-              <BadgePreview
+              <BadgeCard
                 address={params.btcAddress}
                 label={params.label}
                 content={params.content}
@@ -159,8 +157,11 @@ export const ConfigurationForm = () => {
               />
             </div>
 
+            <div className="text-center">
+              <p className="mb-2 text-sm font-medium">Your Donation Card:</p>
+            </div>
+
             <div className="space-y-2">
-              <Label>What others will see:</Label>
               <DonationCard
                 address={params.btcAddress}
                 identifier={params.identifier}
