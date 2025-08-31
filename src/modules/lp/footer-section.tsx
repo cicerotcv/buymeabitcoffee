@@ -37,7 +37,7 @@ export const FooterSection = async () => {
             </Link>
             <Link
               href={getDonationPath({
-                address: 'bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw',
+                address: Env.ExampleBtcAddress,
                 identifier: 'Buy Me a BitCoffee',
               })}
               className="text-muted-foreground hover:text-accent-foreground
