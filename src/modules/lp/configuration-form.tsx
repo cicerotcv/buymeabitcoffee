@@ -26,9 +26,9 @@ import {
   TooltipTrigger,
 } from '$/components/ui/tooltip';
 
+import { BadgeCard } from '../badge/components/badge-card';
 import { getDonationPath, getDonationUrl } from '../crypto/utils/urls';
 import { DonationCard } from '../donation/components/donation-card';
-import { BadgeCard } from './badge-card';
 import { parser, Schema } from './configuration-parser';
 
 export const ConfigurationForm = () => {
