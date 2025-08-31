@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getShieldsUrl } from '@/modules/crypto/utils/shields';
+import { getShieldsUrl } from '@/modules/badge/utils/shields';
 
 import { BadgeStyle } from '@/types/badge';
 

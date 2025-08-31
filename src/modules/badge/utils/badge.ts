@@ -1,5 +1,6 @@
+import { DonationUrlParams, getDonationUrl } from '@/modules/crypto/utils/urls';
+
 import { getShieldsUrl, ShieldsParams } from './shields';
-import { DonationUrlParams, getDonationUrl } from './urls';
 
 type ImageSourceParams = DonationUrlParams & ShieldsParams;
 
