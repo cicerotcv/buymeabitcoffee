@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 
 import { Skeleton } from '$/components/ui/skeleton';
 
-import { ConfigurationForm } from './configuration-form';
+import { PreviewForm } from './preview';
 
 export const GetStartedSection = async () => {
   return (
@@ -25,7 +25,7 @@ export const GetStartedSection = async () => {
             <Skeleton className="border-card aspect-[2/3] w-full rounded-2xl" />
           }
         >
-          <ConfigurationForm />
+          <PreviewForm />
         </Suspense>
       </div>
     </section>

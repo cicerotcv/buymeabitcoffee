@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 import { Github } from 'lucide-react';
 
+import { getDonationPath } from '@/modules/crypto/utils/urls';
+
 import { Env } from '@/env';
 import { SvgLogo } from '@/global/svg/project-logo';
-
-import { getDonationPath } from '../crypto/utils/urls';
 
 export const FooterSection = async () => {
   return (
@@ -37,7 +37,7 @@ export const FooterSection = async () => {
             </Link>
             <Link
               href={getDonationPath({
-                address: 'bc1qw4q8nn7pknen33han7znsv6zhrrfta53sr86fw',
+                onChain: Env.ExampleBtcAddress,
                 identifier: 'Buy Me a BitCoffee',
               })}
               className="text-muted-foreground hover:text-accent-foreground

@@ -14,14 +14,14 @@ import { NextPage } from '@/types/next';
 import { Skeleton } from '$/components/ui/skeleton';
 
 type Params = { address: string };
-type Query = { identifier?: string };
+type Query = { identifier?: string; lightning?: string };
 
 const DonationPage: NextPage<Params, Query> = async ({
   params,
   searchParams,
 }) => {
   const { address } = await params;
-  const { identifier } = await searchParams;
+  const { identifier, lightning } = await searchParams;
 
   const displayName = identifier || address.slice(0, 8) + '...';
 
@@ -55,8 +55,9 @@ const DonationPage: NextPage<Params, Query> = async ({
             }
           >
             <DonationCard
-              address={address}
-              identifier={identifier || 'Donation from Buy Me a BitCoffee'}
+              onChainAddress={address}
+              lightningAddress={lightning}
+              identifier={identifier || 'Buy Me a BitCoffee'}
             />
           </Suspense>
 

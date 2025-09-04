@@ -1,7 +1,15 @@
 import validate, { getAddressInfo, Network } from 'bitcoin-address-validation';
 
-export const getAddressInfoSafe = (address: string) => {
+import {
+  lnAddressParser,
+  lnurlParser,
+} from '@/modules/crypto/parsers/lightning-address';
+
+export const getAddressInfoSafe = (address: unknown) => {
   try {
+    if (!address) throw new Error('Invalid address');
+    if (typeof address !== 'string') throw new Error('Invalid address');
+
     const info = getAddressInfo(address);
 
     const isValid = validate(address);
@@ -20,4 +28,15 @@ export const getAddressInfoSafe = (address: string) => {
       isMainnet: false,
     };
   }
+};
+
+export const getLightningAddressInfoSafe = (addressOrUrl: unknown) => {
+  const isLnurl = lnurlParser.safeParse(addressOrUrl);
+  const isLnAddress = lnAddressParser.safeParse(addressOrUrl);
+
+  return {
+    isLnurl: isLnurl.success,
+    isLnAddress: isLnAddress.success,
+    isValid: isLnurl.success || isLnAddress.success,
+  };
 };
