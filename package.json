@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit && eslint",
+    "tests:run": "vitest run --passWithNoTests",
+    "tests:watch": "vitest watch --passWithNoTests --watch",
     "prettier:check": "prettier --check src",
     "prettier:fix": "prettier --write src"
   },
@@ -23,6 +25,7 @@
     "@tanstack/react-query": "^5.85.5",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "bech32": "^2.0.0",
     "bitcoin-address-validation": "^3.0.0",
     "change-case": "^5.4.4",
     "class-variance-authority": "^0.7.1",
@@ -57,6 +60,7 @@
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.7",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.4"
   }
 }
