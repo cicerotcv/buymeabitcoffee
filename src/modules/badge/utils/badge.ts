@@ -12,7 +12,8 @@ export const getMarkdown = (params: ImageSourceParams) => {
   });
 
   const donationUrl = getDonationUrl({
-    address: params.address,
+    onChain: params.onChain,
+    lightning: params.lightning,
     identifier: params.identifier,
   });
 
@@ -27,8 +28,9 @@ export const getHtmlCode = (params: ImageSourceParams) => {
   });
 
   const donationUrl = getDonationUrl({
-    address: params.address,
+    onChain: params.onChain,
     identifier: params.identifier,
+    lightning: params.lightning,
   });
 
   return `<a href="${donationUrl}"><img src="${shieldsUrl}" alt="Buy Me a BitCoffee badge"/></a>`;

@@ -5,10 +5,9 @@ import Link from 'next/link';
 import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
+import { ButtonLink } from '@/global/components/button-link';
+import { ToggleTheme } from '@/global/components/toggle-theme';
 import { SvgLogo } from '@/global/svg/project-logo';
-
-import { ButtonLink } from '../../global/components/button-link';
-import { ToggleTheme } from '../../global/components/toggle-theme';
 
 export const Header = async () => {
   return (
