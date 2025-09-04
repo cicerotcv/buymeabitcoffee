@@ -43,6 +43,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --color-btc: var(--btc);
+  --color-lightning: var(--lightning);
 }
 
 :root {
@@ -80,6 +81,7 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
   --btc: oklch(75.234% 0.16622 62.58);
+  --lightning: oklch(59.581% 0.28768 311.453);
 }
 
 .dark {
@@ -114,6 +116,9 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  --btc: oklch(81.88% 0.12434 70.166);
+  --lightning: oklch(75.267% 0.16769 314.856);
 }
 
 @layer base {
