@@ -5,7 +5,7 @@ type BtcAddressParams = {
   value?: number;
 };
 
-export const fmtBtcAddress = (params: BtcAddressParams) => {
+const fmtAddressUri = (params: BtcAddressParams) => {
   const { address, label, message, value } = params;
 
   const url = new URL(`bitcoin:${address}`);
@@ -14,5 +14,14 @@ export const fmtBtcAddress = (params: BtcAddressParams) => {
   if (message) url.searchParams.set('message', message);
   if (value) url.searchParams.set('amount', value.toString());
 
-  return url;
+  return {
+    format: url.protocol,
+    query: url.search,
+    address: url.pathname,
+    full: url.href,
+  };
+};
+
+export const BtcUtils = {
+  fmtAddressUri,
 };

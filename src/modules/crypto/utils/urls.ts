@@ -1,18 +1,20 @@
 import { Env } from '@/env';
 
 export type DonationUrlParams = {
-  address: string;
+  onChain: string;
+  lightning?: string;
   identifier?: string;
 };
 
 export const getDonationPath = (params: DonationUrlParams) => {
-  const { address, identifier } = params;
+  const { onChain, lightning, identifier } = params;
 
-  const basePath = `/btc/${address}`;
+  const basePath = `/btc/${onChain}`;
 
   const query = new URLSearchParams();
 
   if (identifier) query.set('identifier', identifier);
+  if (lightning) query.set('lightning', lightning);
 
   if (query.toString()) return `${basePath}?${query.toString()}`;
 
