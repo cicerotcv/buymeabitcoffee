@@ -117,6 +117,7 @@ export const PreviewForm = () => {
                 contentSource={() =>
                   getDonationUrl({
                     onChain: params.btcAddress,
+                    lightning: params.lightningAddressOrUrl,
                     identifier: params.identifier,
                   })
                 }

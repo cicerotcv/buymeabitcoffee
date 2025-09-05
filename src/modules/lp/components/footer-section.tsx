@@ -4,8 +4,6 @@ import Link from 'next/link';
 
 import { Github } from 'lucide-react';
 
-import { getDonationPath } from '@/modules/crypto/utils/urls';
-
 import { Env } from '@/env';
 import { SvgLogo } from '@/global/svg/project-logo';
 
@@ -36,10 +34,7 @@ export const FooterSection = async () => {
               Documentation
             </Link>
             <Link
-              href={getDonationPath({
-                onChain: Env.ExampleBtcAddress,
-                identifier: 'Buy Me a BitCoffee',
-              })}
+              href="/donate"
               className="text-muted-foreground hover:text-accent-foreground
                 transition-colors"
             >
