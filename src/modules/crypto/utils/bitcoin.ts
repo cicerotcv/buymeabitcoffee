@@ -10,7 +10,7 @@ const fmtAddressUri = (params: BtcAddressParams) => {
 
   const url = new URL(`bitcoin:${address}`);
 
-  if (label) url.searchParams.set('label', `donation to ${label}`);
+  if (label) url.searchParams.set('label', label);
   if (message) url.searchParams.set('message', message);
   if (value) url.searchParams.set('amount', value.toString());
 
