@@ -13,22 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${Env.VercelUrl}/#features`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${Env.VercelUrl}/#get-started`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
-    },
-    {
       url: `${Env.VercelUrl}/donate`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.3,
+      priority: 0.8,
     },
   ];
 }

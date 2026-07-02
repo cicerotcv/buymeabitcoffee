@@ -6,7 +6,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: ['/', '/btc/*', '/donate'],
+      allow: '/',
+      disallow: '/api/',
     },
     sitemap: `${Env.VercelUrl}/sitemap.xml`,
   };
