@@ -2,18 +2,15 @@ import { Geist_Mono, Inter } from 'next/font/google';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 
-import { Env } from '@/env';
+import { getRootMetadata, seoConfig } from '@/global/config/seo.config';
 import { QueryProvider } from '@/global/contexts/query-provider';
 import { ThemeProvider } from '@/global/contexts/theme-provider';
 
 import { Toaster } from '$/components/ui/sonner';
 
 import './globals.css';
-
-const siteDescription =
-  'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate badges, accept donations and share with your community.';
 
 const interFont = Inter({
   variable: '--font-inter',
@@ -24,38 +21,7 @@ const mono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(Env.VercelUrl),
-  title: {
-    default: 'Buy Me a BitCoffee - Accept Bitcoin Donations',
-    template: '%s | Buy Me a BitCoffee',
-  },
-  description: siteDescription,
-  keywords: [
-    'bitcoin donations',
-    'buy me a coffee bitcoin',
-    'bitcoin badge',
-    'lightning donations',
-    'open source',
-    'crypto donations',
-  ],
-  openGraph: {
-    siteName: 'Buy Me a BitCoffee',
-    type: 'website',
-    locale: 'en_US',
-    url: '/',
-    title: 'Buy Me a BitCoffee - Accept Bitcoin Donations',
-    description: siteDescription,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Buy Me a BitCoffee - Accept Bitcoin Donations',
-    description: siteDescription,
-  },
-  verification: {
-    google: '3nggRK22fkg4vb5VG7i8XveFw0AHsPq4HwMP3x0O9SA',
-  },
-};
+export const metadata = getRootMetadata();
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -69,7 +35,7 @@ async function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang={seoConfig.lang}
       className="scroll-smooth"
       data-scroll-behavior="smooth"
       suppressHydrationWarning

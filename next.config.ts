@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 import { Env } from '@/env';
+import { getSecurityHeaders } from '@/global/config/security-headers.config';
 
 const params = new URLSearchParams({
   identifier: 'Buy Me a BitCoffee',
@@ -13,6 +14,12 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['img.shields.io'],
   },
+  headers: async () => [
+    {
+      source: '/:path*',
+      headers: getSecurityHeaders(),
+    },
+  ],
   rewrites: async () => [
     {
       source: '/donate',

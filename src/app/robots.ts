@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { Env } from '@/env';
+import { seoConfig } from '@/global/config/seo.config';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: `${Env.VercelUrl}/sitemap.xml`,
+    sitemap: `${seoConfig.siteUrl}/sitemap.xml`,
   };
 }

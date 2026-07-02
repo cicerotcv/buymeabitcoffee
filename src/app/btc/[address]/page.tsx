@@ -7,9 +7,14 @@ import { DonationPageFooter } from '@/modules/donation/components/donation-page/
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
 
-import { Env } from '@/env';
 import { JsonLd } from '@/global/components/json-ld';
 import { PageContainer } from '@/global/components/page-container';
+import {
+  getDonationDisplayName,
+  getDonationJsonLd,
+  getDonationMetadata,
+  seoConfig,
+} from '@/global/config/seo.config';
 import { SvgIcon } from '@/global/svg/project-icon';
 import { NextPage } from '@/types/next';
 
@@ -17,9 +22,6 @@ import { Skeleton } from '$/components/ui/skeleton';
 
 type Params = { address: string };
 type Query = { identifier?: string; lightning?: string };
-
-const getDonationDisplayName = (address: string, identifier?: string) =>
-  identifier || `${address.slice(0, 8)}...`;
 
 export async function generateMetadata({
   params,
@@ -30,26 +32,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { address } = await params;
   const { identifier } = await searchParams;
-  const name = getDonationDisplayName(address, identifier);
-  const title = `Support ${name}`;
-  const description = `Send Bitcoin donations to ${name}. On-chain and Lightning supported.`;
 
-  return {
-    title,
-    description,
-    alternates: { canonical: `/btc/${address}` },
-    openGraph: {
-      title,
-      description,
-      url: `/btc/${address}`,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  };
+  return getDonationMetadata(address, identifier);
 }
 
 const DonationPage: NextPage<Params, Query> = async ({
@@ -63,15 +47,7 @@ const DonationPage: NextPage<Params, Query> = async ({
 
   return (
     <PageContainer>
-      <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'ProfilePage',
-          name: `Support ${displayName}`,
-          description: `Send Bitcoin donations to ${displayName}. On-chain and Lightning supported.`,
-          url: `${Env.VercelUrl}/btc/${address}`,
-        }}
-      />
+      <JsonLd data={getDonationJsonLd(address, displayName)} />
       <DonationPageHeader displayName={displayName} />
 
       <main className="px-2 py-8 sm:px-4">
@@ -102,7 +78,7 @@ const DonationPage: NextPage<Params, Query> = async ({
             <DonationCard
               onChainAddress={address}
               lightningAddress={lightning}
-              identifier={identifier || 'Buy Me a BitCoffee'}
+              identifier={identifier || seoConfig.siteName}
             />
           </Suspense>
 
