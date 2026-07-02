@@ -6,12 +6,13 @@ import { Github } from 'lucide-react';
 
 import { Env } from '@/env';
 import { ButtonLink } from '@/global/components/button-link';
+import { GlassHeaderShell } from '@/global/components/glass-header-shell';
 import { ToggleTheme } from '@/global/components/toggle-theme';
 import { SvgLogo } from '@/global/svg/project-logo';
 
 export const Header = async () => {
   return (
-    <header className="border-border container mx-auto border-b">
+    <GlassHeaderShell>
       <div
         className="container mx-auto flex items-center justify-between gap-4
           px-2 py-4 sm:px-4"
@@ -41,6 +42,6 @@ export const Header = async () => {
           <ButtonLink href="#get-started">Get Started</ButtonLink>
         </nav>
       </div>
-    </header>
+    </GlassHeaderShell>
   );
 };

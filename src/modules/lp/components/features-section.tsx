@@ -12,10 +12,7 @@ import {
 
 export const FeaturesSection = async () => {
   return (
-    <section
-      id="features"
-      className="bg-accent dark:bg-card px-2 py-20 sm:px-4"
-    >
+    <section id="features" className="px-2 py-20 sm:px-4">
       <div className="container mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-card-foreground mb-4 text-4xl font-bold">
@@ -28,9 +25,14 @@ export const FeaturesSection = async () => {
         </div>
 
         <div className="container grid gap-8 md:grid-cols-3">
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Code className="mx-auto mb-4 size-12" />
+              <Code
+                className="shadow-btc/20 mx-auto mb-4 size-12 drop-shadow-sm"
+              />
               <CardTitle>Open Source</CardTitle>
             </CardHeader>
             <CardContent>
@@ -41,9 +43,14 @@ export const FeaturesSection = async () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Github className="mx-auto mb-4 h-12 w-12" />
+              <Github
+                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+              />
               <CardTitle>GitHub Integration</CardTitle>
             </CardHeader>
             <CardContent>
@@ -54,9 +61,14 @@ export const FeaturesSection = async () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Shield className="mx-auto mb-4 h-12 w-12" />
+              <Shield
+                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+              />
               <CardTitle>Secure & Simple</CardTitle>
             </CardHeader>
             <CardContent>

@@ -49,7 +49,7 @@ export const PreviewForm = () => {
   );
 
   return (
-    <Card className="mx-auto max-w-2xl">
+    <Card variant="glass" className="mx-auto max-w-2xl">
       <CardHeader>
         <CardTitle className="text-center text-2xl">
           Create Your Donation Page
@@ -98,7 +98,7 @@ export const PreviewForm = () => {
         </FormProvider>
 
         {params?.btcAddress && (
-          <div className="bg-accent space-y-4 rounded-md p-4">
+          <div className="glass-inset space-y-4 rounded-xl p-4">
             <div className="text-center">
               <p className="mb-2 text-sm font-medium">Your Donation Card:</p>
             </div>
@@ -108,6 +108,7 @@ export const PreviewForm = () => {
                 onChainAddress={params.btcAddress}
                 lightningAddress={params.lightningAddressOrUrl}
                 identifier={params.identifier}
+                variant="flat"
               />
             </div>
 
@@ -138,13 +139,14 @@ export const PreviewForm = () => {
               </ButtonLink>
             </div>
 
-            <Separator />
+            <Separator className="bg-glass-border" />
 
             <div className="space-y-2">
               <BadgeCard
                 onChainAddress={params.btcAddress}
                 lightningAddressOrUrl={params.lightningAddressOrUrl}
                 identifier={params.identifier}
+                variant="flat"
               />
             </div>
           </div>

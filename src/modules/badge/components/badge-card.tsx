@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { capitalCase } from 'change-case';
+import type { VariantProps } from 'class-variance-authority';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { CodeBlock } from '@/global/components/code-block';
@@ -21,6 +22,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  type cardVariants,
 } from '$/components/ui/card';
 import { Separator } from '$/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '$/components/ui/tabs';
@@ -38,6 +40,7 @@ type Props = {
   onChainAddress: string;
   lightningAddressOrUrl?: string;
   identifier?: string;
+  variant?: VariantProps<typeof cardVariants>['variant'];
 };
 
 export const BadgeCard = (props: Props) => {
@@ -92,7 +95,7 @@ export const BadgeCard = (props: Props) => {
   );
 
   return (
-    <Card>
+    <Card variant={props.variant ?? 'glass'}>
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2">
           <ShieldsIoIcon className="size-5" />
@@ -134,7 +137,7 @@ export const BadgeCard = (props: Props) => {
           onValueChange={(style) => setStyle(style as BadgeStyle)}
           className="mt-4"
         >
-          <TabsList className="w-full">
+          <TabsList className="w-full overflow-x-auto">
             <TabsTrigger value={BadgeStyle.Flat}>
               {capitalCase(BadgeStyle.Flat)}
             </TabsTrigger>
@@ -183,7 +186,7 @@ export const BadgeCard = (props: Props) => {
         </Tabs>
 
         <Tabs defaultValue={CodeStyle.Markdown}>
-          <TabsList className="w-full">
+          <TabsList className="w-full overflow-x-auto">
             <TabsTrigger value={CodeStyle.Markdown}>
               Markdown <MarkdownIcon />
             </TabsTrigger>

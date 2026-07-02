@@ -4,12 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '$/components/ui/card';
 
 export const DonationPageInstruction = () => {
   return (
-    <Card>
-      <CardHeader>
+    <Card variant="default" className="border-border shadow-sm">
+      <CardHeader className="border-border border-b">
         <CardTitle className="text-lg">How it works</CardTitle>
       </CardHeader>
 
-      <CardContent className="text-muted-foreground space-y-3 text-sm">
+      <CardContent className="space-y-3 text-sm">
         <Step step={1}>
           Scan the QR code with your Bitcoin wallet or copy the address
         </Step>
@@ -32,15 +32,16 @@ type StepProps = {
 
 const Step = (props: PropsWithChildren<StepProps>) => {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-start gap-3">
       <div
-        className="bg-primary text-primary-foreground mt-0.5 flex h-6 w-6
-          shrink-0 items-center justify-center rounded-full text-xs font-bold"
+        className="bg-btc dark:bg-primary dark:text-primary-foreground mt-0.5
+          flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs
+          font-bold text-white"
       >
         {props.step}
       </div>
 
-      <p>{props.children}</p>
+      <p className="text-foreground leading-relaxed">{props.children}</p>
     </div>
   );
 };
