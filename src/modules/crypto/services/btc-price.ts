@@ -1,6 +1,6 @@
 export const getUsdToBtc = async (value?: number) => {
   const response = await fetch(
-    `https://blockchain.info/tobtc?currency=USD&value=${value || 1}`
+    `/api/btc/price?value=${value || 1}`
   );
 
   if (!response.ok) throw new Error('Failed to fetch BTC price');
