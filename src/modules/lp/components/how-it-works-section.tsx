@@ -62,7 +62,8 @@ export const HowItWorksSection = async () => {
                   Step {step}
                 </span>
                 <Icon
-                  className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+                  className="shadow-btc/20 mx-auto mb-4 h-12 w-12
+                    drop-shadow-sm"
                 />
                 <CardTitle>{title}</CardTitle>
               </CardHeader>

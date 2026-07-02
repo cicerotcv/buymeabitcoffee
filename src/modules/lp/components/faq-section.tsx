@@ -21,7 +21,8 @@ export const FaqSection = async () => {
           {faqItems.map(({ question, answer }) => (
             <details
               key={question}
-              className="glass-card group rounded-xl transition-shadow open:shadow-md"
+              className="glass-card group rounded-xl transition-shadow
+                open:shadow-md"
             >
               <summary
                 className="flex cursor-pointer list-none items-center
