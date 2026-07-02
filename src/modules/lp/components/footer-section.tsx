@@ -27,11 +27,13 @@ export const FooterSection = async () => {
             </Link>
 
             <Link
-              href={Env.GithubUrl}
+              href={`${Env.GithubUrl}/blob/main/README.md`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-accent-foreground
                 transition-colors"
             >
-              Documentation
+              README
             </Link>
             <Link
               href="/donate"
@@ -48,7 +50,7 @@ export const FooterSection = async () => {
             text-center text-sm"
         >
           <p>
-            Open source and built with ❤️ for the{' '}
+            Open source. Built for the{' '}
             <span className="text-btc font-semibold">Bitcoin</span> community
           </p>
         </div>

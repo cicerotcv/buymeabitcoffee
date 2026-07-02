@@ -55,8 +55,8 @@ export const PreviewForm = () => {
           Create Your Donation Page
         </CardTitle>
         <CardDescription className="text-center">
-          Enter your details below to generate a shareable donation page and
-          badge
+          Add your wallet address to generate a shareable donation page and
+          embeddable badge instantly.
         </CardDescription>
       </CardHeader>
 
@@ -64,8 +64,8 @@ export const PreviewForm = () => {
         <FormProvider {...form}>
           <TextInput
             {...form.register('identifier')}
-            label="Identifier or username"
-            info="This is the identifier or username that will be displayed on the donation page and used as a self note on the donor's transaction."
+            label="Display name"
+            info="Shown on your donation page and in the badge. Donors may see it as a payment note."
             placeholder="e.g. Buy Me a BitCoffee"
           />
 
@@ -79,7 +79,7 @@ export const PreviewForm = () => {
 
           <TextInput
             {...form.register('lightningAddressOrUrl')}
-            label="Lightning Address or URL"
+            label="Lightning Address or URL (optional)"
             description="Your Lightning wallet address where donations will be sent"
             info={
               <span>
@@ -93,14 +93,16 @@ export const PreviewForm = () => {
           />
 
           <Button onClick={handleSubmit} className="w-full">
-            Generate Preview
+            Create donation page
           </Button>
         </FormProvider>
 
         {params?.btcAddress && (
           <div className="glass-inset space-y-4 rounded-xl p-4">
             <div className="text-center">
-              <p className="mb-2 text-sm font-medium">Your Donation Card:</p>
+              <p className="mb-2 text-sm font-medium">
+                Preview — this is what donors will see
+              </p>
             </div>
 
             <div className="space-y-2">

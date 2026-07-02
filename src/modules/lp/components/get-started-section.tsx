@@ -12,10 +12,11 @@ export const GetStartedSection = async () => {
       <div className="container mx-auto max-w-4xl">
         <div className="mb-16 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">
-            Try It Now
+            Create your page — live preview below
           </h2>
           <p className="text-muted-foreground text-xl">
-            Create your donation page in seconds. No signup required.{' '}
+            Create your donation page in seconds. Works entirely in your browser.
+            No signup required.{' '}
             <span className="text-btc">No data stored</span>.
           </p>
         </div>

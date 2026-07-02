@@ -12,14 +12,14 @@ export const seoConfig = {
   siteUrl: Env.VercelUrl,
   lang: 'en',
   title: {
-    default: 'Buy Me a BitCoffee | Open-Source Bitcoin Donations',
+    default: 'Buy Me a BitCoffee | Bitcoin Donation Pages & README Badges',
     template: '%s | Buy Me a BitCoffee',
-    home: 'Buy Me a BitCoffee | Open-Source Bitcoin Donations',
+    home: 'Buy Me a BitCoffee | Bitcoin Donation Pages & README Badges',
   },
   description: {
     default:
-      'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate badges, accept donations and share with your community.',
-    home: 'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate shareable badges, integrate with GitHub, and start receiving Bitcoin donations today.',
+      'Open-source Bitcoin donation platform inspired by Buy Me a Coffee. Generate badges, accept donations and share with your community.',
+    home: 'Create a free Bitcoin donation page with QR codes, Lightning support, and embeddable badges. No signup. Direct to your wallet. Open source.',
   },
   keywords: [
     'bitcoin donations',
@@ -28,6 +28,10 @@ export const seoConfig = {
     'lightning donations',
     'open source',
     'crypto donations',
+    'bitcoin qr code donations',
+    'github donation badge',
+    'lightning address donations',
+    'self-custody donations',
   ],
   verification: {
     google: '3nggRK22fkg4vb5VG7i8XveFw0AHsPq4HwMP3x0O9SA',
@@ -50,6 +54,34 @@ export const seoConfig = {
   },
   securityHeaders: securityHeadersConfig,
 } as const;
+
+export const faqItems = [
+  {
+    question: 'Do you hold my funds?',
+    answer:
+      'No. Donations go directly to the address you provide. We never touch your sats.',
+  },
+  {
+    question: 'Is Lightning required?',
+    answer:
+      'No. On-chain only works fine; Lightning is optional for faster, lower-fee donations.',
+  },
+  {
+    question: 'Do you store my data?',
+    answer:
+      'No. Pages are generated client-side from your inputs. Nothing is saved on our servers.',
+  },
+  {
+    question: 'Are there platform fees?',
+    answer:
+      'No. Standard Bitcoin network fees still apply when donors send on-chain.',
+  },
+  {
+    question: 'How do badges work?',
+    answer:
+      'Copy the Markdown or HTML snippet into your README or website. The badge links to your donation page.',
+  },
+] as const;
 
 export const getDonationDisplayName = (address: string, identifier?: string) =>
   identifier || `${address.slice(0, 8)}...`;
@@ -168,6 +200,17 @@ export function getHomeJsonLd(): Record<string, unknown> {
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Any',
         description: description.home,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqItems.map(({ question, answer }) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: answer,
+          },
+        })),
       },
     ],
   };
