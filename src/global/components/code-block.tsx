@@ -8,8 +8,8 @@ export const CodeBlock = (props: Props) => {
   return (
     <div
       className={cn(
-        `bg-muted text-muted-foreground flex-1 rounded-md p-3 font-mono text-xs
-        break-all`,
+        `bg-muted/50 text-muted-foreground border-glass-border flex-1 rounded-md
+        border p-3 font-mono text-xs break-all backdrop-blur-sm`,
         props.className
       )}
     >

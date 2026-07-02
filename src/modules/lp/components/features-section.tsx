@@ -1,6 +1,6 @@
 'use server';
 
-import { Code, Github, Shield } from 'lucide-react';
+import { Github, Shield, Zap } from 'lucide-react';
 
 import {
   Card,
@@ -12,57 +12,69 @@ import {
 
 export const FeaturesSection = async () => {
   return (
-    <section
-      id="features"
-      className="bg-accent dark:bg-card px-2 py-20 sm:px-4"
-    >
+    <section id="features" className="px-2 py-20 sm:px-4">
       <div className="container mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-card-foreground mb-4 text-4xl font-bold">
-            Why Buy Me a BitCoffee?
+            Everything you need to accept Bitcoin
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
-            Built by developers, for developers. Open-source, secure, free, and
-            easy to integrate.
+            Free, open-source, and ready in under a minute. Built for creators,
+            maintainers, and builders.
           </p>
         </div>
 
         <div className="container grid gap-8 md:grid-cols-3">
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Code className="mx-auto mb-4 size-12" />
-              <CardTitle>Open Source</CardTitle>
+              <Shield
+                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+              />
+              <CardTitle>Direct &amp; Private</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Fully open-source and transparent. Contribute, customize, and
-                trust the code you&apos;re using.
+                Donations go straight to your wallet. No accounts, no custody,
+                and nothing stored on our servers.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Github className="mx-auto mb-4 h-12 w-12" />
-              <CardTitle>GitHub Integration</CardTitle>
+              <Zap
+                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+              />
+              <CardTitle>Lightning + On-chain</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Generate beautiful badges for your README files and project
-                documentation with one click.
+                One page for both. Donors scan a QR code or copy your address
+                — whichever they prefer.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card
+            variant="glass"
+            className="text-center transition-all hover:shadow-md"
+          >
             <CardHeader className="text-btc">
-              <Shield className="mx-auto mb-4 h-12 w-12" />
-              <CardTitle>Secure & Simple</CardTitle>
+              <Github
+                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
+              />
+              <CardTitle>README-ready Badges</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Direct Bitcoin donations to your wallet. No middleman, no fees,
-                complete control.
+                Generate shields.io-style badges in Markdown or HTML. Paste once
+                into your repo or site.
               </CardDescription>
             </CardContent>
           </Card>

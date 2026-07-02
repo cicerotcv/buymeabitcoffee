@@ -1,13 +1,20 @@
-'use server';
-
 import { Suspense } from 'react';
+
+import type { Metadata } from 'next';
 
 import { DonationCard } from '@/modules/donation/components/donation-card';
 import { DonationPageFooter } from '@/modules/donation/components/donation-page/footer';
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
 
+import { JsonLd } from '@/global/components/json-ld';
 import { PageContainer } from '@/global/components/page-container';
+import {
+  getDonationDisplayName,
+  getDonationJsonLd,
+  getDonationMetadata,
+  seoConfig,
+} from '@/global/config/seo.config';
 import { SvgIcon } from '@/global/svg/project-icon';
 import { NextPage } from '@/types/next';
 
@@ -16,6 +23,19 @@ import { Skeleton } from '$/components/ui/skeleton';
 type Params = { address: string };
 type Query = { identifier?: string; lightning?: string };
 
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<Query>;
+}): Promise<Metadata> {
+  const { address } = await params;
+  const { identifier } = await searchParams;
+
+  return getDonationMetadata(address, identifier);
+}
+
 const DonationPage: NextPage<Params, Query> = async ({
   params,
   searchParams,
@@ -23,10 +43,11 @@ const DonationPage: NextPage<Params, Query> = async ({
   const { address } = await params;
   const { identifier, lightning } = await searchParams;
 
-  const displayName = identifier || address.slice(0, 8) + '...';
+  const displayName = getDonationDisplayName(address, identifier);
 
   return (
     <PageContainer>
+      <JsonLd data={getDonationJsonLd(address, displayName)} />
       <DonationPageHeader displayName={displayName} />
 
       <main className="px-2 py-8 sm:px-4">
@@ -57,7 +78,7 @@ const DonationPage: NextPage<Params, Query> = async ({
             <DonationCard
               onChainAddress={address}
               lightningAddress={lightning}
-              identifier={identifier || 'Buy Me a BitCoffee'}
+              identifier={identifier || seoConfig.siteName}
             />
           </Suspense>
 

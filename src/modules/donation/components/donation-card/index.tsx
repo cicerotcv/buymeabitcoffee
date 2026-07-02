@@ -1,3 +1,4 @@
+import type { VariantProps } from 'class-variance-authority';
 import { QrCode } from 'lucide-react';
 
 import { BitcoinIcon } from '@/global/svg/icons/bitcoin';
@@ -9,6 +10,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  type cardVariants,
 } from '$/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '$/components/ui/tabs';
 import { cn } from '$/lib/utils';
@@ -25,6 +27,7 @@ type Props = {
   onChainAddress?: string;
   lightningAddress?: string;
   identifier: string;
+  variant?: VariantProps<typeof cardVariants>['variant'];
 };
 
 export const DonationCard = (props: Props) => {
@@ -39,7 +42,7 @@ export const DonationCard = (props: Props) => {
     : AddressType.OnChain;
 
   return (
-    <Card>
+    <Card variant={props.variant ?? 'glass'}>
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2">
           <QrCode className="size-5" />
@@ -57,12 +60,12 @@ export const DonationCard = (props: Props) => {
               hidden: singleAddress,
             })}
           >
-            <TabsTrigger value={AddressType.Lightning}>
+            <TabsTrigger value={AddressType.Lightning} data-brand="lightning">
               <LightningIcon className="text-lightning" />
               Lightning
             </TabsTrigger>
 
-            <TabsTrigger value={AddressType.OnChain}>
+            <TabsTrigger value={AddressType.OnChain} data-brand="btc">
               <BitcoinIcon className="text-btc" />
               On-chain
             </TabsTrigger>

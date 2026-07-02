@@ -2,8 +2,9 @@ import { Geist_Mono, Inter } from 'next/font/google';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 
+import { getRootMetadata, seoConfig } from '@/global/config/seo.config';
 import { QueryProvider } from '@/global/contexts/query-provider';
 import { ThemeProvider } from '@/global/contexts/theme-provider';
 
@@ -20,13 +21,11 @@ const mono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Buy me a BitCoffee - Accept Bitcoin Donations',
-  description:
-    'Open-source Bitcoin donation platform inspired by Buy me a Coffee. Generate badges, accept donations and share with your community.',
-  verification: {
-    google: '3nggRK22fkg4vb5VG7i8XveFw0AHsPq4HwMP3x0O9SA',
-  },
+export const metadata = getRootMetadata();
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 async function RootLayout({
@@ -36,7 +35,7 @@ async function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang={seoConfig.lang}
       className="scroll-smooth"
       data-scroll-behavior="smooth"
       suppressHydrationWarning

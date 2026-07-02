@@ -44,6 +44,10 @@
 
   --color-btc: var(--btc);
   --color-lightning: var(--lightning);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-glass-card-border: var(--glass-card-border);
+  --color-surface-elevated: var(--surface-elevated);
 }
 
 :root {
@@ -82,6 +86,19 @@
 
   --btc: oklch(75.234% 0.16622 62.58);
   --lightning: oklch(59.581% 0.28768 311.453);
+
+  --glass-bg: oklch(1 0 0 / 60%);
+  --glass-border: oklch(1 0 0 / 20%);
+  --glass-blur: 12px;
+  --surface-elevated: oklch(1 0 0 / 80%);
+
+  --glass-header-bg: oklch(0.98 0.005 265 / 55%);
+  --glass-header-border: oklch(0.85 0.013 255 / 60%);
+
+  --glass-card-bg: oklch(1 0 0 / 90%);
+  --glass-card-border: oklch(0.88 0.013 255.508);
+  --glass-card-blur: 16px;
+  --glass-card-shadow: 0 8px 32px oklch(0.2 0.04 265 / 8%);
 }
 
 .dark {
@@ -119,6 +136,78 @@
 
   --btc: oklch(81.88% 0.12434 70.166);
   --lightning: oklch(75.267% 0.16769 314.856);
+
+  --glass-bg: oklch(0.208 0.042 265.755 / 50%);
+  --glass-border: oklch(1 0 0 / 12%);
+  --surface-elevated: oklch(0.208 0.042 265.755 / 70%);
+
+  --glass-header-bg: oklch(0.18 0.04 265 / 50%);
+  --glass-header-border: oklch(1 0 0 / 12%);
+
+  --glass-card-bg: oklch(0.208 0.042 265.755 / 55%);
+  --glass-card-border: oklch(1 0 0 / 12%);
+  --glass-card-blur: 16px;
+  --glass-card-shadow: 0 8px 32px oklch(0 0 0 / 25%);
+}
+
+@utility glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+@utility glass-header {
+  background: var(--glass-header-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--glass-header-border);
+}
+
+@utility glass-card {
+  background: var(--glass-card-bg);
+  -webkit-backdrop-filter: blur(var(--glass-card-blur));
+  backdrop-filter: blur(var(--glass-card-blur));
+  border: 1px solid var(--glass-card-border);
+  box-shadow: var(--glass-card-shadow);
+}
+
+@utility glass-inset {
+  background: color-mix(in oklch, var(--muted) 40%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+}
+
+/* With macOS "Reduce transparency" enabled, prefers-reduced-transparency
+   disables all backdrop-filter effects — token tweaks will have no effect. */
+@media (prefers-reduced-transparency: reduce) {
+  :root,
+  .dark {
+    --glass-bg: var(--card);
+    --glass-blur: 0px;
+    --surface-elevated: var(--card);
+    --glass-header-bg: var(--card);
+    --glass-card-bg: var(--card);
+    --glass-card-blur: 0px;
+    --glass-card-shadow: none;
+  }
+
+  [data-slot='card'][data-variant='flat'],
+  [data-slot='card'][data-variant='inset'],
+  .glass-inset,
+  .glass-header,
+  .glass-card {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--card);
+  }
+
+  [data-slot='card'][data-variant='flat'],
+  [data-slot='card'][data-variant='inset'],
+  .glass-inset {
+    background: var(--muted);
+  }
 }
 
 @layer base {

@@ -1,46 +1,25 @@
 'use server';
 
-import Link from 'next/link';
-
-import { Github } from 'lucide-react';
-
-import { Env } from '@/env';
-import { ButtonLink } from '@/global/components/button-link';
+import { GlassHeaderShell } from '@/global/components/glass-header-shell';
 import { ToggleTheme } from '@/global/components/toggle-theme';
 import { SvgLogo } from '@/global/svg/project-logo';
 
+import { HeaderNav } from './header-nav';
+
 export const Header = async () => {
   return (
-    <header className="border-border container mx-auto border-b">
+    <GlassHeaderShell>
       <div
-        className="container mx-auto flex items-center justify-between gap-4
-          px-2 py-4 sm:px-4"
+        className="relative container mx-auto flex items-center justify-between
+          gap-4 px-2 py-4 sm:px-4"
       >
         <SvgLogo className="text-btc h-8 w-fit" />
 
-        <ToggleTheme className="ml-auto" size="icon-sm" />
-
-        <nav className="hidden items-center gap-4 md:flex">
-          <Link
-            href="#features"
-            className="text-muted-foreground hover:text-foreground
-              transition-colors"
-          >
-            Features
-          </Link>
-
-          <Link
-            href={Env.GithubUrl}
-            className="text-muted-foreground hover:text-foreground flex
-              items-center gap-1 transition-colors"
-          >
-            <Github className="h-4 w-4" />
-            GitHub
-          </Link>
-
-          <ButtonLink href="#get-started">Get Started</ButtonLink>
-        </nav>
+        <div className="flex items-center gap-2 md:gap-4">
+          <ToggleTheme size="icon-sm" />
+          <HeaderNav />
+        </div>
       </div>
-    </header>
+    </GlassHeaderShell>
   );
 };
