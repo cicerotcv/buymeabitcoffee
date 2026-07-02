@@ -55,8 +55,8 @@ export const FeaturesSection = async () => {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                One page for both. Donors scan a QR code or copy your address
-                — whichever they prefer.
+                One page for both. Donors scan a QR code or copy your address —
+                whichever they prefer.
               </CardDescription>
             </CardContent>
           </Card>

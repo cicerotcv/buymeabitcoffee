@@ -1,4 +1,5 @@
 export const securityHeadersConfig = {
+  xRobotsTag: 'index, follow',
   xFrameOptions: 'SAMEORIGIN',
   xContentTypeOptions: 'nosniff',
   referrerPolicy: 'strict-origin-when-cross-origin',
@@ -18,6 +19,7 @@ export const securityHeadersConfig = {
 
 export function getSecurityHeaders(): { key: string; value: string }[] {
   const {
+    xRobotsTag,
     xFrameOptions,
     xContentTypeOptions,
     referrerPolicy,
@@ -26,6 +28,7 @@ export function getSecurityHeaders(): { key: string; value: string }[] {
   } = securityHeadersConfig;
 
   return [
+    { key: 'X-Robots-Tag', value: xRobotsTag },
     { key: 'X-Frame-Options', value: xFrameOptions },
     { key: 'X-Content-Type-Options', value: xContentTypeOptions },
     { key: 'Referrer-Policy', value: referrerPolicy },

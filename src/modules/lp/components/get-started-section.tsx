@@ -15,8 +15,8 @@ export const GetStartedSection = async () => {
             Create your page — live preview below
           </h2>
           <p className="text-muted-foreground text-xl">
-            Create your donation page in seconds. Works entirely in your browser.
-            No signup required.{' '}
+            Create your donation page in seconds. Works entirely in your
+            browser. No signup required.{' '}
             <span className="text-btc">No data stored</span>.
           </p>
         </div>

@@ -181,39 +181,40 @@ export function getDonationMetadata(
   };
 }
 
-export function getHomeJsonLd(): Record<string, unknown> {
+export function getHomeJsonLd(): Record<string, unknown>[] {
   const { siteName, siteUrl, description } = seoConfig;
+  const context = 'https://schema.org';
 
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebSite',
-        name: siteName,
-        url: siteUrl,
-        description: description.home,
-      },
-      {
-        '@type': 'WebApplication',
-        name: siteName,
-        url: siteUrl,
-        applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Any',
-        description: description.home,
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: faqItems.map(({ question, answer }) => ({
-          '@type': 'Question',
-          name: question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: answer,
-          },
-        })),
-      },
-    ],
-  };
+  return [
+    {
+      '@context': context,
+      '@type': 'WebSite',
+      name: siteName,
+      url: siteUrl,
+      description: description.home,
+    },
+    {
+      '@context': context,
+      '@type': 'WebApplication',
+      name: siteName,
+      url: siteUrl,
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      description: description.home,
+    },
+    {
+      '@context': context,
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map(({ question, answer }) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: answer,
+        },
+      })),
+    },
+  ];
 }
 
 export function getDonationJsonLd(
