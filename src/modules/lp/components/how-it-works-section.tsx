@@ -1,80 +1,58 @@
 'use server';
 
-import { Copy, Share2, Wallet } from 'lucide-react';
+import { HashRule } from '@/global/components/receipt';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '$/components/ui/card';
+import { sectionFrame, SectionHeading } from './section-heading';
 
 const steps = [
   {
-    step: 1,
-    icon: Wallet,
+    step: '01',
     title: 'Enter your address',
     description:
       'Add your Bitcoin address and an optional Lightning address or URL.',
   },
   {
-    step: 2,
-    icon: Copy,
+    step: '02',
     title: 'Copy your link or badge',
     description:
       'Get a shareable donation page URL and an embeddable badge snippet.',
   },
   {
-    step: 3,
-    icon: Share2,
+    step: '03',
     title: 'Share anywhere',
     description:
-      'Post on GitHub, your site, or social — donors pay you directly.',
+      'Post on GitHub, your site, or social. Donors pay you directly.',
   },
 ] as const;
 
 export const HowItWorksSection = async () => {
   return (
-    <section id="how-it-works" className="px-2 py-20 sm:px-4">
-      <div className="container mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-foreground mb-4 text-4xl font-bold">
-            How it works
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
-            Three steps from wallet address to live donation page.
-          </p>
-        </div>
+    <section id="how-it-works" className="scroll-mt-20 py-20 md:py-28">
+      <div className={sectionFrame}>
+        <SectionHeading
+          eyebrow="How it works"
+          title={
+            <>
+              Three lines, <em>one</em> page.
+            </>
+          }
+          lead="Three steps from wallet address to live donation page."
+        />
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {steps.map(({ step, icon: Icon, title, description }) => (
-            <Card
-              key={step}
-              variant="glass"
-              className="text-center transition-all hover:shadow-md"
-            >
-              <CardHeader className="text-btc">
-                <span
-                  className="text-muted-foreground mb-2 block text-sm
-                    font-semibold tracking-wide uppercase"
-                >
-                  Step {step}
-                </span>
-                <Icon
-                  className="shadow-btc/20 mx-auto mb-4 h-12 w-12
-                    drop-shadow-sm"
-                />
-                <CardTitle>{title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  {description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+        <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+          {steps.map(({ step, title, description }) => (
+            <li key={step} className="relative">
+              <HashRule className="mb-6" />
+              <span className="text-btc-ink font-mono text-sm">{step}</span>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">
+                {title}
+              </h3>
+              <p className="text-muted-foreground mt-2 max-w-[34ch]">
+                {description}
+              </p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

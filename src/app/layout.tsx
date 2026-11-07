@@ -1,9 +1,11 @@
-import { Geist_Mono, Inter } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { headers } from 'next/headers';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Viewport } from 'next';
 
+import { NONCE_HEADER } from '@/global/config/security-headers.config';
 import { getRootMetadata, seoConfig } from '@/global/config/seo.config';
 import { QueryProvider } from '@/global/contexts/query-provider';
 import { ThemeProvider } from '@/global/contexts/theme-provider';
@@ -12,8 +14,14 @@ import { Toaster } from '$/components/ui/sonner';
 
 import './globals.css';
 
-const interFont = Inter({
-  variable: '--font-inter',
+const sans = Geist({
+  variable: '--font-geist',
+  subsets: ['latin'],
+});
+const heading = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: ['normal', 'italic'],
   subsets: ['latin'],
 });
 const mono = Geist_Mono({
@@ -33,6 +41,8 @@ async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get(NONCE_HEADER) ?? undefined;
+
   return (
     <html
       lang={seoConfig.lang}
@@ -41,12 +51,12 @@ async function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${interFont.variable} ${mono.variable} font-sans
-          antialiased`}
+        className={`${sans.variable} ${heading.variable} ${mono.variable}
+          font-sans antialiased`}
       >
-        <ThemeProvider>
+        <ThemeProvider nonce={nonce}>
           <QueryProvider>{children}</QueryProvider>
-          <Toaster richColors />
+          <Toaster />
         </ThemeProvider>
 
         <Analytics />

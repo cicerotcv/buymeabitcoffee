@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import {
+  BADGE_TEXT_MAX_LENGTH,
+  parseBadgeQuery,
+} from '@/modules/badge/parsers/badge-query';
 import { getShieldsUrl } from '@/modules/badge/utils/shields';
 
 import { BadgeStyle } from '@/types/badge';
@@ -9,21 +13,20 @@ export const revalidate = 86400;
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const query = parseBadgeQuery(new URL(request.url).searchParams);
 
-    const label = searchParams.get('label') || 'Donate';
-    const content = searchParams.get('content') || 'Buy Me a BitCoffee';
-    const style = searchParams.get('style') || BadgeStyle.Flat;
-
-    if (!Object.values(BadgeStyle).includes(style as BadgeStyle)) {
+    if (!query.success) {
       return NextResponse.json(
         {
-          error: 'Invalid style parameter',
+          error: 'Invalid badge parameters',
           validStyles: Object.values(BadgeStyle),
+          maxTextLength: BADGE_TEXT_MAX_LENGTH,
         },
         { status: 400 }
       );
     }
+
+    const { label, content, style } = query.data;
 
     const shieldsUrl = getShieldsUrl({
       content,

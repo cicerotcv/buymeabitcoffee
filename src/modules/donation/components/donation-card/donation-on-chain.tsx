@@ -9,7 +9,7 @@ import { AlertTriangle } from 'lucide-react';
 import { useLiveQuotation } from '@/modules/crypto/hooks/live-quotation';
 import { BtcUtils } from '@/modules/crypto/utils/bitcoin';
 
-import { CopyButton } from '@/global/components/copy-button';
+import { HashRule, LineItem } from '@/global/components/receipt';
 import { BitcoinIcon } from '@/global/svg/icons/bitcoin';
 
 import { Alert, AlertDescription, AlertTitle } from '$/components/ui/alert';
@@ -17,7 +17,10 @@ import { Button } from '$/components/ui/button';
 
 import { getAddressInfoSafe } from '../../utils/address-info';
 import { AddressInfo } from './address-on-chain-info';
+import { AddressSlip } from './address-slip';
 import { DonationQrCode } from './qr-code';
+
+const quickAmounts = [5, 10, 25] as const;
 
 type Props = {
   onChainAddress?: string;
@@ -46,7 +49,7 @@ export const DonationOnChain = (props: Props) => {
     });
   }, [value, props.onChainAddress, props.identifier, query.data]);
 
-  if (!url)
+  if (!url || !props.onChainAddress)
     return (
       <Alert className="text-destructive">
         <AlertTriangle />
@@ -59,23 +62,23 @@ export const DonationOnChain = (props: Props) => {
     );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <DonationQrCode
         fetching={query.isFetching}
         pending={query.isPending}
-        content={url?.full}
+        content={url.full}
       >
         <div
           className="bg-btc absolute top-1/2 left-1/2 flex w-fit -translate-1/2
             flex-col items-center justify-center rounded-md border-3
-            border-white p-2 text-white"
+            border-white p-1.5 text-white"
         >
-          <BitcoinIcon className="size-10 text-white" />
+          <BitcoinIcon className="size-8 text-white" />
         </div>
       </DonationQrCode>
 
       {!addressInfo.isValid && (
-        <Alert className="text-btc bg-btc/10">
+        <Alert variant="warning">
           <AlertTriangle />
           <AlertTitle>Warning</AlertTitle>
           <AlertDescription>
@@ -85,71 +88,38 @@ export const DonationOnChain = (props: Props) => {
         </Alert>
       )}
 
-      <div className="space-y-2">
-        <p className="text-foreground text-sm font-medium">Address:</p>
+      <AddressSlip
+        grouped
+        address={props.onChainAddress}
+        checks={<AddressInfo address={props.onChainAddress} />}
+        copyContent={() => url.full}
+        walletHref={url.full}
+      />
 
-        <div className="flex flex-col gap-2">
-          <AddressInfo address={props.onChainAddress} />
+      <HashRule />
 
-          <div
-            className="bg-muted text-muted-foreground flex-1 rounded-md p-3
-              font-mono text-xs break-all"
-          >
-            {url?.format}
-            <span className="text-btc font-semibold">{url?.address}</span>
-            {url?.query}
-          </div>
-
-          <CopyButton
-            size="sm"
-            variant="outline"
-            contentSource={() => url?.full || ''}
-          >
-            Copy
-          </CopyButton>
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <p className="text-foreground text-sm font-medium">
-          Quick amounts (USD equivalent):
-        </p>
+      <div className="space-y-3">
+        <p className="eyebrow">Quick amounts (USD equivalent)</p>
 
         <div className="grid grid-cols-4 gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="data-[selected=true]:border-btc! text-sm"
-            data-selected={value === 5}
-            onClick={() => setValue(5)}
-          >
-            $ 5
-          </Button>
+          {quickAmounts.map((amount) => (
+            <Button
+              key={amount}
+              variant="outline"
+              size="sm"
+              className="data-[selected=true]:border-btc-ink
+                data-[selected=true]:bg-secondary font-mono"
+              data-selected={value === amount}
+              aria-pressed={value === amount}
+              onClick={() => setValue(amount)}
+            >
+              ${amount}
+            </Button>
+          ))}
 
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="data-[selected=true]:border-btc! text-sm"
-            data-selected={value === 10}
-            onClick={() => setValue(10)}
-          >
-            $ 10
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="data-[selected=true]:border-btc! text-sm"
-            data-selected={value === 25}
-            onClick={() => setValue(25)}
-          >
-            $ 25
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-sm"
             onClick={() => setValue(undefined)}
             disabled={value === undefined}
           >
@@ -157,7 +127,16 @@ export const DonationOnChain = (props: Props) => {
           </Button>
         </div>
 
-        <p className="text-muted-foreground text-center text-xs">
+        {value && query.data ? (
+          <dl className="text-sm">
+            <LineItem
+              label={`$${value} in bitcoin`}
+              value={`${query.data} BTC`}
+            />
+          </dl>
+        ) : null}
+
+        <p className="text-muted-foreground text-xs">
           These are suggested amounts. You can send any amount you&apos;d like.
           The prices come from{' '}
           <Link
@@ -168,6 +147,7 @@ export const DonationOnChain = (props: Props) => {
           >
             Blockchain.com
           </Link>
+          .
         </p>
       </div>
     </div>

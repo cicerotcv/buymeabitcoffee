@@ -11,10 +11,14 @@ export const AddressInfo = (props: Props) => {
   const info = getAddressInfoSafe(props.address);
 
   return (
-    <div className={cn('flex flex-row flex-wrap gap-1 select-none sm:gap-2')}>
+    <div
+      className={cn(
+        'flex flex-row flex-wrap items-center gap-x-3 gap-y-1 select-none'
+      )}
+    >
       <VerificationBadge
         valid={info.isValid}
-        label="BTC address"
+        label="Valid"
         validMessage="Valid BTC address"
         invalidMessage="The address is not recognized as a valid BTC address"
       />

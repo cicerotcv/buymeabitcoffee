@@ -1,15 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import {
+  getBlockchainPriceUrl,
+  parsePriceQuery,
+} from '@/modules/crypto/parsers/price-query';
+
 export const revalidate = 10;
 
 export async function GET(request: NextRequest) {
-  const value = request.nextUrl.searchParams.get('value') ?? '1';
+  const query = parsePriceQuery(request.nextUrl.searchParams);
+
+  if (!query.success)
+    return NextResponse.json(
+      { error: 'Invalid value parameter' },
+      { status: 400 }
+    );
 
   try {
-    const response = await fetch(
-      `https://blockchain.info/tobtc?currency=USD&value=${value}`,
-      { next: { revalidate: 10 } }
-    );
+    const response = await fetch(getBlockchainPriceUrl(query.data.value), {
+      next: { revalidate: 10 },
+    });
 
     if (!response.ok) {
       return NextResponse.json(

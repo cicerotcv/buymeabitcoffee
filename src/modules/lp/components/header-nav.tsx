@@ -14,6 +14,7 @@ import { cn } from '$/lib/utils';
 
 const navLinks = [
   { href: '#how-it-works', label: 'How it works' },
+  { href: '#faq', label: 'FAQ' },
   { href: Env.GithubUrl, label: 'GitHub', external: true, icon: Github },
 ] as const;
 
@@ -22,7 +23,7 @@ export const HeaderNav = () => {
 
   return (
     <>
-      <nav className="hidden items-center gap-4 md:flex">
+      <nav className="hidden items-center gap-6 text-sm md:flex">
         {navLinks.map((link) => (
           <Link
             key={link.href}
@@ -40,7 +41,9 @@ export const HeaderNav = () => {
           </Link>
         ))}
 
-        <ButtonLink href="#get-started">Create your page</ButtonLink>
+        <ButtonLink href="#get-started" size="sm">
+          Create your page
+        </ButtonLink>
       </nav>
 
       <div className="md:hidden">
@@ -57,8 +60,7 @@ export const HeaderNav = () => {
 
         <div
           className={cn(
-            'glass-inset absolute top-full right-0 left-0 border-t',
-            'border-glass-border px-4 py-4',
+            'bg-background absolute top-full right-0 left-0 border-y px-4 py-4',
             open ? 'block' : 'hidden'
           )}
         >

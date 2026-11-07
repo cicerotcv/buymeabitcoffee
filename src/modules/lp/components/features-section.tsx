@@ -1,83 +1,76 @@
 'use server';
 
-import { Github, Shield, Zap } from 'lucide-react';
+import { HashRule, LineItem } from '@/global/components/receipt';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '$/components/ui/card';
+import { sectionFrame, SectionHeading } from './section-heading';
+
+// Facts only: each line restates something the product already guarantees.
+const items = [
+  {
+    label: 'Custody',
+    value: 'none',
+    note: 'Donations go straight to your wallet.',
+  },
+  { label: 'Accounts', value: 'none', note: 'No signup, ever.' },
+  { label: 'Platform fees', value: '0', note: 'Only standard network fees.' },
+  {
+    label: 'Data stored on our servers',
+    value: 'none',
+    note: 'Pages are generated in your browser.',
+  },
+  {
+    label: 'Payment rails',
+    value: 'on-chain + LN',
+    note: 'One page for both. Donors scan or copy.',
+  },
+  {
+    label: 'README badges',
+    value: 'MD + HTML',
+    note: 'shields.io styles, paste once.',
+  },
+  { label: 'Source code', value: 'open', note: 'Fork it, audit it.' },
+] as const;
 
 export const FeaturesSection = async () => {
   return (
-    <section id="features" className="px-2 py-20 sm:px-4">
-      <div className="container mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-card-foreground mb-4 text-4xl font-bold">
-            Everything you need to accept Bitcoin
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
-            Free, open-source, and ready in under a minute. Built for creators,
-            maintainers, and builders.
-          </p>
-        </div>
+    <section id="features" className="py-20 md:py-28">
+      <div className={`${sectionFrame} grid gap-12 md:grid-cols-12`}>
+        <SectionHeading
+          className="md:col-span-5"
+          eyebrow="What it costs you"
+          title={
+            <>
+              Itemized, <em>nothing</em> hidden.
+            </>
+          }
+          lead="Free, open-source, and ready in under a minute. Built for creators, maintainers, and builders."
+        />
 
-        <div className="container grid gap-8 md:grid-cols-3">
-          <Card
-            variant="glass"
-            className="text-center transition-all hover:shadow-md"
-          >
-            <CardHeader className="text-btc">
-              <Shield
-                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
-              />
-              <CardTitle>Direct &amp; Private</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base">
-                Donations go straight to your wallet. No accounts, no custody,
-                and nothing stored on our servers.
-              </CardDescription>
-            </CardContent>
-          </Card>
+        <div className="md:col-span-7">
+          <dl className="space-y-5">
+            {items.map(({ label, value, note }) => (
+              <div key={label}>
+                <LineItem
+                  label={<span className="font-medium">{label}</span>}
+                  value={value}
+                />
+                <p className="text-muted-foreground mt-1 text-sm">{note}</p>
+              </div>
+            ))}
+          </dl>
 
-          <Card
-            variant="glass"
-            className="text-center transition-all hover:shadow-md"
-          >
-            <CardHeader className="text-btc">
-              <Zap
-                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
-              />
-              <CardTitle>Lightning + On-chain</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base">
-                One page for both. Donors scan a QR code or copy your address —
-                whichever they prefer.
-              </CardDescription>
-            </CardContent>
-          </Card>
+          <HashRule className="my-6" />
 
-          <Card
-            variant="glass"
-            className="text-center transition-all hover:shadow-md"
-          >
-            <CardHeader className="text-btc">
-              <Github
-                className="shadow-btc/20 mx-auto mb-4 h-12 w-12 drop-shadow-sm"
-              />
-              <CardTitle>README-ready Badges</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base">
-                Generate shields.io-style badges in Markdown or HTML. Paste once
-                into your repo or site.
-              </CardDescription>
-            </CardContent>
-          </Card>
+          <dl>
+            <LineItem
+              label={<span className="eyebrow text-foreground">Total</span>}
+              value={
+                <span className="font-heading text-2xl">
+                  Your keys, your sats.
+                </span>
+              }
+            />
+          </dl>
         </div>
       </div>
     </section>

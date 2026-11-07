@@ -1,50 +1,68 @@
 import Link from 'next/link';
 
-import { Github } from 'lucide-react';
+import { ArrowRight, Github } from 'lucide-react';
 
 import { Env } from '@/env';
 import { ButtonLink } from '@/global/components/button-link';
 
+import { HeroReceipt } from './hero-receipt';
+import { sectionFrame } from './section-heading';
+
 export const HeroSection = async () => {
   return (
-    <section className="px-2 py-20 sm:px-4">
-      <div className="container mx-auto max-w-prose text-center">
-        <h1 className="text-foreground mb-6 text-5xl font-bold">
-          Accept Bitcoin Donations
-          <span className="text-btc block">Direct to Your Wallet</span>
-        </h1>
-        <p
-          className="text-muted-foreground mx-auto mb-8 max-w-2xl text-xl
-            leading-relaxed"
-        >
-          Open-source donation pages and README badges — inspired by{' '}
-          <Link
-            href="https://www.buymeacoffee.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-3"
-          >
-            Buy Me a Coffee
-          </Link>
-          . On-chain and Lightning. No signup. No platform fees. Your keys, your
-          sats.
-        </p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <ButtonLink size="lg" className="px-8 text-lg" href="#get-started">
-            Create Your Donation Page
-          </ButtonLink>
+    <section className="pt-14 pb-20 md:pt-24 md:pb-28">
+      <div
+        className={`${sectionFrame} grid items-center gap-14 md:grid-cols-12
+          md:gap-10`}
+      >
+        <div className="md:col-span-7">
+          <p className="eyebrow mb-6">Open source · On-chain + Lightning</p>
 
-          <ButtonLink
-            href={Env.GithubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="outline"
-            size="lg"
-            className="bg-transparent px-8 text-lg"
+          <h1
+            className="font-heading [&_em]:text-btc-ink
+              text-[clamp(3rem,7vw,5.5rem)] leading-[1.02] tracking-[-0.01em]
+              [&_em]:italic"
           >
-            <Github className="mr-2 h-5 w-5" />
-            Star on GitHub
-          </ButtonLink>
+            Tips in bitcoin, <em>straight</em> to your wallet.
+          </h1>
+
+          <p
+            className="text-muted-foreground mt-6 max-w-[52ch] text-lg
+              leading-relaxed"
+          >
+            Open-source donation pages and README badges, inspired by{' '}
+            <Link
+              href="https://www.buymeacoffee.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground underline underline-offset-3"
+            >
+              Buy Me a Coffee
+            </Link>
+            . On-chain and Lightning. No signup. No platform fees.
+          </p>
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink size="lg" href="#get-started">
+              Create your donation page
+              <ArrowRight />
+            </ButtonLink>
+
+            <ButtonLink
+              href={Env.GithubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="lg"
+            >
+              <Github />
+              Star on GitHub
+            </ButtonLink>
+          </div>
+        </div>
+
+        <div className="md:col-span-5">
+          <HeroReceipt />
         </div>
       </div>
     </section>

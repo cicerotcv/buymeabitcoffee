@@ -4,23 +4,21 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '$/lib/utils';
 
-const cardVariants = cva(
-  'text-card-foreground flex flex-col gap-4 rounded-xl py-6',
-  {
-    variants: {
-      variant: {
-        default: 'bg-card border shadow-sm',
-        glass: 'glass-card',
-        inset:
-          'bg-muted/40 backdrop-blur-sm border border-glass-border shadow-none',
-        flat: 'bg-card/50 backdrop-blur-sm border-0 shadow-none',
-      },
+const cardVariants = cva('text-card-foreground flex flex-col gap-4 py-6', {
+  variants: {
+    variant: {
+      // Paper sheet with a hairline: the neutral surface.
+      default: 'bg-card border rounded-lg',
+      // A receipt: perforated top and bottom, no border (the teeth draw the edge).
+      receipt: 'bg-card perforated py-8',
+      // Recessed paper for nested content (snippets, previews).
+      inset: 'bg-muted border rounded-lg',
     },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 function Card({
   className,

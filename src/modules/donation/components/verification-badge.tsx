@@ -1,6 +1,5 @@
 import { Check, X } from 'lucide-react';
 
-import { Badge } from '$/components/ui/badge';
 import {
   Tooltip,
   TooltipContent,
@@ -14,19 +13,36 @@ type Props = {
   validMessage?: string;
   invalidMessage?: string;
 };
+
+/** A receipt "stamp": mono label with a round check, explained on hover. */
 export const VerificationBadge = (props: Props) => {
   return (
     <Tooltip>
-      <TooltipTrigger>
-        <Badge
-          variant={props.valid ? 'outline' : 'destructive'}
-          className={cn({
-            'bg-green-400/10 text-green-500 dark:text-green-400': props.valid,
-          })}
+      <TooltipTrigger
+        className={cn(
+          `focus-visible:ring-ring/50 inline-flex cursor-help items-center
+          gap-1.5 rounded-sm font-mono text-[0.7rem] tracking-[0.08em] uppercase
+          outline-none focus-visible:ring-[3px]`,
+          props.valid ? 'text-success' : 'text-destructive'
+        )}
+      >
+        <span
+          aria-hidden
+          className={cn(
+            'flex size-4 items-center justify-center rounded-full',
+            props.valid
+              ? 'bg-success/15 text-success'
+              : 'bg-destructive/15 text-destructive'
+          )}
         >
-          {props.valid ? <Check /> : <X />}
-          {props.label}
-        </Badge>
+          {props.valid ? (
+            <Check className="size-2.5" strokeWidth={3} />
+          ) : (
+            <X className="size-2.5" strokeWidth={3} />
+          )}
+        </span>
+        <span className="sr-only">{props.valid ? 'Passed: ' : 'Failed: '}</span>
+        {props.label}
       </TooltipTrigger>
 
       <TooltipContent>

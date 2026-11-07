@@ -11,10 +11,14 @@ export const LightningAddressInfo = (props: Props) => {
   const info = getLightningAddressInfoSafe(props.address);
 
   return (
-    <div className={cn('flex flex-row flex-wrap gap-1 select-none sm:gap-2')}>
+    <div
+      className={cn(
+        'flex flex-row flex-wrap items-center gap-x-3 gap-y-1 select-none'
+      )}
+    >
       <VerificationBadge
         valid={info.isValid}
-        label="Lightning Address / URL"
+        label="Valid"
         validMessage="Valid Lightning Address / URL"
         invalidMessage="It's not a Lightning Address / URL."
       />

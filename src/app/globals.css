@@ -3,28 +3,27 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Art direction: "the tip as a receipt".
+ * Source of truth: ~/Documents/obsidian/projects/buymeabitcoffee/direcao-de-arte.md
+ * Palette: same tones as offline-tools (src/global.css there).
+ */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-geist);
+  --font-heading: var(--font-instrument-serif);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-rule: var(--rule);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -37,184 +36,239 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 2px);
 
   --color-btc: var(--btc);
+  --color-btc-ink: var(--btc-ink);
+  --color-btc-foreground: var(--btc-foreground);
   --color-lightning: var(--lightning);
-  --color-glass-bg: var(--glass-bg);
-  --color-glass-border: var(--glass-border);
-  --color-glass-card-border: var(--glass-card-border);
-  --color-surface-elevated: var(--surface-elevated);
+
+  --animate-print: print 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/*
+ * Palette shared with offline-tools: 7 tones + an indigo complement.
+ * Components never use tone-N directly; they use the semantic tokens below.
+ */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --color-tone-1: oklch(0.75 0.17 60); /* Bitcoin orange: brand, CTA */
+  --color-tone-2: oklch(0.525 0.145 47); /* burnt orange: emphasis text (AA) */
+  --color-tone-3: oklch(0.85 0.09 65); /* peach-orange: rules, accent borders */
+  --color-tone-4: oklch(0.945 0.035 70); /* peach: tonal surface */
+  --color-tone-5: oklch(0.955 0.008 70); /* warm neutral surface */
+  --color-tone-6: oklch(0.985 0.004 75); /* page background */
+  --color-tone-7: oklch(0.21 0.012 60); /* ink */
+  --color-indigo-1: oklch(0.27 0.08 275); /* accent band */
+  --color-indigo-2: oklch(0.5 0.13 277); /* focus, links */
+
+  --radius: 0.375rem;
+
+  --background: var(--color-tone-6);
+  --foreground: var(--color-tone-7);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: var(--color-tone-7);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --popover-foreground: var(--color-tone-7);
+  --primary: var(--color-tone-1);
+  --primary-foreground: var(--color-tone-7);
+  --secondary: var(--color-tone-4);
+  --secondary-foreground: var(--color-tone-7);
+  --muted: var(--color-tone-5);
+  --muted-foreground: oklch(0.49 0.014 60);
+  --accent: var(--color-tone-4);
+  --accent-foreground: var(--color-tone-7);
+  --destructive: oklch(0.55 0.2 27);
+  --success: oklch(0.52 0.12 150);
+  --border: color-mix(in oklab, var(--color-tone-5), var(--color-tone-7) 9%);
+  --border-strong: color-mix(
+    in oklab,
+    var(--color-tone-5),
+    var(--color-tone-7) 16%
+  );
+  --input: var(--border-strong);
+  --rule: var(--color-tone-3);
 
-  --btc: oklch(75.234% 0.16622 62.58);
-  --lightning: oklch(59.581% 0.28768 311.453);
+  --btc: var(--color-tone-1);
+  --btc-ink: var(--color-tone-2);
+  --btc-foreground: var(--color-tone-7);
+  --lightning: oklch(0.56 0.25 311);
+  --band: var(--color-indigo-1);
+  --band-foreground: var(--color-tone-6);
 
-  --glass-bg: oklch(1 0 0 / 60%);
-  --glass-border: oklch(1 0 0 / 20%);
-  --glass-blur: 12px;
-  --surface-elevated: oklch(1 0 0 / 80%);
-
-  --glass-header-bg: oklch(0.98 0.005 265 / 55%);
-  --glass-header-border: oklch(0.85 0.013 255 / 60%);
-
-  --glass-card-bg: oklch(1 0 0 / 90%);
-  --glass-card-border: oklch(0.88 0.013 255.508);
-  --glass-card-blur: 16px;
-  --glass-card-shadow: 0 8px 32px oklch(0.2 0.04 265 / 8%);
+  --ring: var(--color-indigo-2);
+  --grain-opacity: 0.03;
+  --receipt-shadow: drop-shadow(0 1px 1px oklch(0.21 0.012 60 / 8%))
+    drop-shadow(0 14px 28px oklch(0.21 0.012 60 / 9%));
 }
 
+/* Dark: the indigo complement becomes the base, orange stays the brand. */
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: oklch(0.175 0.025 275);
+  --foreground: oklch(0.95 0.008 75);
+  --card: oklch(0.215 0.03 275);
+  --card-foreground: oklch(0.95 0.008 75);
+  --popover: oklch(0.225 0.032 275);
+  --popover-foreground: oklch(0.95 0.008 75);
+  --primary: var(--color-tone-1);
+  --primary-foreground: var(--color-tone-7);
+  --secondary: oklch(0.26 0.04 275);
+  --secondary-foreground: oklch(0.95 0.008 75);
+  --muted: oklch(0.245 0.032 275);
+  --muted-foreground: oklch(0.73 0.02 275);
+  --accent: oklch(0.28 0.04 275);
+  --accent-foreground: oklch(0.95 0.008 75);
+  --destructive: oklch(0.68 0.18 25);
+  --success: oklch(0.74 0.14 150);
+  --border: oklch(0.9 0.03 275 / 11%);
+  --border-strong: oklch(0.95 0.008 75 / 22%);
+  --input: oklch(0.95 0.008 75 / 14%);
+  --rule: oklch(0.75 0.17 60 / 40%);
 
-  --btc: oklch(81.88% 0.12434 70.166);
-  --lightning: oklch(75.267% 0.16769 314.856);
+  --btc: var(--color-tone-1);
+  --btc-ink: oklch(0.8 0.14 62);
+  --btc-foreground: var(--color-tone-7);
+  --lightning: oklch(0.75 0.17 315);
+  --band: oklch(0.14 0.03 275);
+  --band-foreground: oklch(0.95 0.008 75);
 
-  --glass-bg: oklch(0.208 0.042 265.755 / 50%);
-  --glass-border: oklch(1 0 0 / 12%);
-  --surface-elevated: oklch(0.208 0.042 265.755 / 70%);
-
-  --glass-header-bg: oklch(0.18 0.04 265 / 50%);
-  --glass-header-border: oklch(1 0 0 / 12%);
-
-  --glass-card-bg: oklch(0.208 0.042 265.755 / 55%);
-  --glass-card-border: oklch(1 0 0 / 12%);
-  --glass-card-blur: 16px;
-  --glass-card-shadow: 0 8px 32px oklch(0 0 0 / 25%);
+  --ring: oklch(0.68 0.12 277);
+  --grain-opacity: 0.05;
+  --receipt-shadow: drop-shadow(0 1px 1px oklch(0.06 0.02 275 / 50%))
+    drop-shadow(0 16px 32px oklch(0.06 0.02 275 / 55%));
 }
 
-@utility glass {
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-}
-
-@utility glass-header {
-  background: var(--glass-header-bg);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--glass-header-border);
-}
-
-@utility glass-card {
-  background: var(--glass-card-bg);
-  -webkit-backdrop-filter: blur(var(--glass-card-blur));
-  backdrop-filter: blur(var(--glass-card-blur));
-  border: 1px solid var(--glass-card-border);
-  box-shadow: var(--glass-card-shadow);
-}
-
-@utility glass-inset {
-  background: color-mix(in oklch, var(--muted) 40%, transparent);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
-}
-
-/* With macOS "Reduce transparency" enabled, prefers-reduced-transparency
-   disables all backdrop-filter effects — token tweaks will have no effect. */
-@media (prefers-reduced-transparency: reduce) {
-  :root,
-  .dark {
-    --glass-bg: var(--card);
-    --glass-blur: 0px;
-    --surface-elevated: var(--card);
-    --glass-header-bg: var(--card);
-    --glass-card-bg: var(--card);
-    --glass-card-blur: 0px;
-    --glass-card-shadow: none;
+@keyframes print {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-12px);
   }
-
-  [data-slot='card'][data-variant='flat'],
-  [data-slot='card'][data-variant='inset'],
-  .glass-inset,
-  .glass-header,
-  .glass-card {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    background: var(--card);
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
   }
+}
 
-  [data-slot='card'][data-variant='flat'],
-  [data-slot='card'][data-variant='inset'],
-  .glass-inset {
-    background: var(--muted);
-  }
+/* Receipt edge: semicircular teeth cut on top and bottom. Only for receipts. */
+@utility perforated {
+  --perf-r: 5px;
+  --perf-step: 14px;
+  -webkit-mask:
+    radial-gradient(circle var(--perf-r) at 50% 0, #0000 97%, #000) top /
+      var(--perf-step) 51% repeat-x,
+    radial-gradient(circle var(--perf-r) at 50% 100%, #0000 97%, #000) bottom /
+      var(--perf-step) 51% repeat-x;
+  mask:
+    radial-gradient(circle var(--perf-r) at 50% 0, #0000 97%, #000) top /
+      var(--perf-step) 51% repeat-x,
+    radial-gradient(circle var(--perf-r) at 50% 100%, #0000 97%, #000) bottom /
+      var(--perf-step) 51% repeat-x;
+}
+
+/* Paper lift for receipts: filter on the wrapper so the teeth cast it too. */
+@utility receipt-lift {
+  filter: var(--receipt-shadow);
+}
+
+/* Dashed hash rule; use on an empty element (hr or div). */
+@utility rule-hash {
+  height: 1px;
+  border: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--rule) 0 6px,
+    transparent 6px 11px
+  );
+}
+
+/* Vertical variant of the hash rule, for stacked steps on mobile. */
+@utility rule-hash-y {
+  width: 1px;
+  border: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--rule) 0 6px,
+    transparent 6px 11px
+  );
+}
+
+/* Dotted leader between a label and its value (place inside a flex row). */
+@utility leader {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  /* An empty box has no text baseline; pin it to the bottom instead. */
+  align-self: flex-end;
+  margin-bottom: 0.32em;
+  border-bottom: 2px dotted var(--rule);
+}
+
+/* Mono eyebrow: the only eyebrow style on the site. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'ss01';
+  }
+
+  /* Paper grain: inline SVG noise, fixed under everything. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .dark body::before {
+    filter: invert(1);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  code,
+  kbd,
+  samp {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media print {
+    body::before {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

@@ -1,47 +1,30 @@
-import { PropsWithChildren } from 'react';
+import { HashRule } from '@/global/components/receipt';
 
-import { Card, CardContent, CardHeader, CardTitle } from '$/components/ui/card';
+const steps = [
+  'Scan the QR code with your Bitcoin wallet or copy the address.',
+  "Enter the amount you'd like to donate in your wallet.",
+  'Send the transaction. Your support will be greatly appreciated!',
+] as const;
 
 export const DonationPageInstruction = () => {
   return (
-    <Card variant="default" className="border-border shadow-sm">
-      <CardHeader className="border-border border-b">
-        <CardTitle className="text-lg">How it works</CardTitle>
-      </CardHeader>
+    <section aria-labelledby="how-to-send" className="space-y-5">
+      <p id="how-to-send" className="eyebrow">
+        How to send
+      </p>
 
-      <CardContent className="space-y-3 text-sm">
-        <Step step={1}>
-          Scan the QR code with your Bitcoin wallet or copy the address
-        </Step>
+      <ol className="space-y-4">
+        {steps.map((text, index) => (
+          <li key={text} className="flex items-baseline gap-4">
+            <span className="text-btc-ink font-mono text-sm">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p className="leading-relaxed">{text}</p>
+          </li>
+        ))}
+      </ol>
 
-        <Step step={2}>
-          Enter the amount you&apos;d like to donate in your wallet
-        </Step>
-
-        <Step step={3}>
-          Send the transaction - your support will be greatly appreciated!
-        </Step>
-      </CardContent>
-    </Card>
-  );
-};
-
-type StepProps = {
-  step: number;
-};
-
-const Step = (props: PropsWithChildren<StepProps>) => {
-  return (
-    <div className="flex items-start gap-3">
-      <div
-        className="bg-btc dark:bg-primary dark:text-primary-foreground mt-0.5
-          flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs
-          font-bold text-white"
-      >
-        {props.step}
-      </div>
-
-      <p className="text-foreground leading-relaxed">{props.children}</p>
-    </div>
+      <HashRule />
+    </section>
   );
 };

@@ -8,7 +8,8 @@ type Props = PropsWithChildren<{
   className?: string;
 }>;
 
-export const GlassHeaderShell = (props: Props) => {
+/** Solid paper header; the hairline only appears once the page scrolls. */
+export const HeaderShell = (props: Props) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,8 +22,8 @@ export const GlassHeaderShell = (props: Props) => {
   return (
     <header
       className={cn(
-        'glass-header sticky top-0 z-50 transition-shadow',
-        scrolled && 'shadow-sm',
+        'bg-background sticky top-0 z-50 border-b transition-colors',
+        scrolled ? 'border-border' : 'border-transparent',
         props.className
       )}
     >

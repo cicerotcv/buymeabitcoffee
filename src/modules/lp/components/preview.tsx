@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ReceiptText } from 'lucide-react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { ButtonLink } from '@/global/components/button-link';
@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from '$/components/ui/card';
-import { Separator } from '$/components/ui/separator';
 
 import { BadgeCard } from '../../badge/components/badge-card';
 import { getDonationPath, getDonationUrl } from '../../crypto/utils/urls';
@@ -38,85 +37,85 @@ export const PreviewForm = () => {
   const [params, setParams] = useState<PreviewSchema | null>(() =>
     form.getValues()
   );
+  // Bumped on every submit so the receipt prints again.
+  const [printKey, setPrintKey] = useState(0);
 
-  const handleSubmit = form.handleSubmit(
-    (data) => {
-      setParams(data);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  const handleSubmit = form.handleSubmit((data) => {
+    setParams(data);
+    setPrintKey((key) => key + 1);
+  });
 
   return (
-    <Card variant="glass" className="mx-auto max-w-2xl">
-      <CardHeader>
-        <CardTitle className="text-center text-2xl">
-          Create Your Donation Page
-        </CardTitle>
-        <CardDescription className="text-center">
-          Add your wallet address to generate a shareable donation page and
-          embeddable badge instantly.
-        </CardDescription>
-      </CardHeader>
+    <div className="grid items-start gap-10 lg:grid-cols-12">
+      <Card className="lg:sticky lg:top-24 lg:col-span-5">
+        <CardHeader>
+          <CardTitle className="text-lg">Your details</CardTitle>
+          <CardDescription>
+            Add your wallet address to generate a shareable donation page and
+            embeddable badge instantly.
+          </CardDescription>
+        </CardHeader>
 
-      <CardContent className="space-y-4 px-2 sm:px-4">
-        <FormProvider {...form}>
-          <TextInput
-            {...form.register('identifier')}
-            label="Display name"
-            info="Shown on your donation page and in the badge. Donors may see it as a payment note."
-            placeholder="e.g. Buy Me a BitCoffee"
-          />
+        <CardContent className="space-y-5">
+          <FormProvider {...form}>
+            <TextInput
+              {...form.register('identifier')}
+              label="Display name"
+              info="Shown on your donation page and in the badge. Donors may see it as a payment note."
+              placeholder="e.g. Buy Me a BitCoffee"
+            />
 
-          <TextInput
-            {...form.register('btcAddress')}
-            label="Bitcoin Address"
-            description="Your Bitcoin wallet address where donations will be sent"
-            info="Note: some bitcoin addresses may be case sensitive"
-            placeholder="e.g. bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
-          />
+            <TextInput
+              {...form.register('btcAddress')}
+              label="Bitcoin Address"
+              description="Your Bitcoin wallet address where donations will be sent"
+              info="Note: some bitcoin addresses may be case sensitive"
+              placeholder="e.g. bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+              className="font-mono"
+            />
 
-          <TextInput
-            {...form.register('lightningAddressOrUrl')}
-            label="Lightning Address or URL (optional)"
-            description="Your Lightning wallet address where donations will be sent"
-            info={
-              <span>
-                Note: a Lightning Address is in the format{' '}
-                <code className="font-black">username@domain</code> or a
-                Lightning URL is in the format{' '}
-                <code className="font-black">lnurl1abc123...</code>
-              </span>
-            }
-            placeholder="e.g. username@domain or lnurl1abc123..."
-          />
+            <TextInput
+              {...form.register('lightningAddressOrUrl')}
+              label="Lightning Address or URL (optional)"
+              description="Your Lightning wallet address where donations will be sent"
+              info={
+                <span>
+                  Note: a Lightning Address is in the format{' '}
+                  <code className="font-black">username@domain</code> or a
+                  Lightning URL is in the format{' '}
+                  <code className="font-black">lnurl1abc123...</code>
+                </span>
+              }
+              placeholder="e.g. username@domain or lnurl1abc123..."
+              className="font-mono"
+            />
 
-          <Button onClick={handleSubmit} className="w-full">
-            Create donation page
-          </Button>
-        </FormProvider>
+            <Button onClick={handleSubmit} size="lg" className="w-full">
+              Print my donation page
+            </Button>
+          </FormProvider>
+        </CardContent>
+      </Card>
 
-        {params?.btcAddress && (
-          <div className="glass-inset space-y-4 rounded-xl p-4">
-            <div className="text-center">
-              <p className="mb-2 text-sm font-medium">
-                Preview — this is what donors will see
+      <div className="space-y-8 lg:col-span-7">
+        {params?.btcAddress ? (
+          <>
+            <div className="space-y-3">
+              <p className="eyebrow text-center">
+                Preview: this is what donors will see
               </p>
-            </div>
-
-            <div className="space-y-2">
               <DonationCard
+                key={printKey}
+                print
+                className="mx-auto max-w-md"
                 onChainAddress={params.btcAddress}
                 lightningAddress={params.lightningAddressOrUrl}
                 identifier={params.identifier}
-                variant="flat"
               />
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="mx-auto flex max-w-md flex-col gap-2">
               <CopyButton
-                variant="outline"
                 contentSource={() =>
                   getDonationUrl({
                     onChain: params.btcAddress,
@@ -125,7 +124,7 @@ export const PreviewForm = () => {
                   })
                 }
               >
-                Copy your Donation Link
+                Copy your donation link
               </CopyButton>
 
               <ButtonLink
@@ -137,23 +136,33 @@ export const PreviewForm = () => {
                 className="w-full"
                 variant="ghost"
               >
-                See the Donation Page <ExternalLink />
+                See the donation page <ExternalLink />
               </ButtonLink>
             </div>
 
-            <Separator className="bg-glass-border" />
-
-            <div className="space-y-2">
-              <BadgeCard
-                onChainAddress={params.btcAddress}
-                lightningAddressOrUrl={params.lightningAddressOrUrl}
-                identifier={params.identifier}
-                variant="flat"
-              />
-            </div>
+            <BadgeCard
+              onChainAddress={params.btcAddress}
+              lightningAddressOrUrl={params.lightningAddressOrUrl}
+              identifier={params.identifier}
+            />
+          </>
+        ) : (
+          <div
+            className="border-border-strong text-muted-foreground flex min-h-80
+              flex-col items-center justify-center gap-3 rounded-lg border
+              border-dashed p-8 text-center"
+          >
+            <ReceiptText className="size-8" />
+            <p className="font-heading text-foreground text-2xl">
+              Your receipt prints here.
+            </p>
+            <p className="max-w-[36ch] text-sm">
+              Fill in your Bitcoin address and press print to preview your
+              donation page and badge.
+            </p>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
