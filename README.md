@@ -115,7 +115,7 @@ https://buymeabitcoffee.vercel.app/api/btc?label=Donate&content=Buy%20Me%20a%20B
 
 ## Run it locally
 
-Requires Node.js 20 or later and pnpm 10.
+Requires Node.js 24 and pnpm 10.
 
 ```bash
 git clone https://github.com/cicerotcv/buymeabitcoffee.git
