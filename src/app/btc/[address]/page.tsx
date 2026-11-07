@@ -34,9 +34,9 @@ export async function generateMetadata({
   searchParams: Promise<Query>;
 }): Promise<Metadata> {
   const { address } = await params;
-  const { identifier } = parseDonationQuery(await searchParams);
+  const { identifier, lightning } = parseDonationQuery(await searchParams);
 
-  return getDonationMetadata(address, identifier);
+  return getDonationMetadata(address, identifier, lightning);
 }
 
 const DonationPage: NextPage<Params, Query> = async ({

@@ -154,14 +154,34 @@ export function getHomeMetadata(): Metadata {
   };
 }
 
+/** Social card URL for a donation page (route handler, keeps the query). */
+export const getDonationOgImagePath = (
+  address: string,
+  identifier?: string,
+  lightning?: string
+) => {
+  const query = new URLSearchParams();
+  if (identifier) query.set('identifier', identifier);
+  if (lightning) query.set('lightning', lightning);
+  const search = query.toString();
+  return `/btc/${address}/og${search ? `?${search}` : ''}`;
+};
+
 export function getDonationMetadata(
   address: string,
-  identifier?: string
+  identifier?: string,
+  lightning?: string
 ): Metadata {
   const displayName = getDonationDisplayName(address, identifier);
   const title = getDonationTitle(displayName);
   const description = getDonationDescription(displayName);
   const path = `/btc/${address}`;
+  const image = {
+    url: getDonationOgImagePath(address, identifier, lightning),
+    width: 1200,
+    height: 630,
+    alt: title,
+  };
 
   return {
     title,
@@ -172,11 +192,13 @@ export function getDonationMetadata(
       description,
       url: path,
       type: seoConfig.openGraph.type,
+      images: [image],
     },
     twitter: {
       card: seoConfig.twitter.card,
       title,
       description,
+      images: [image],
     },
   };
 }

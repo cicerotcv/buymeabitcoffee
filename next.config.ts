@@ -14,6 +14,12 @@ const params = new URLSearchParams({
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
+  // OG images read their TTFs from disk at request time; ship them with the
+  // function bundles.
+  outputFileTracingIncludes: {
+    '/btc/[address]/og': ['./assets/og/**'],
+    '/opengraph-image': ['./assets/og/**'],
+  },
   images: {
     domains: ['img.shields.io'],
   },
