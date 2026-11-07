@@ -7,7 +7,7 @@ import {
   useTheme as useNextTheme,
 } from 'next-themes';
 
-export const ThemeProvider = (props: PropsWithChildren) => {
+export const ThemeProvider = (props: PropsWithChildren<{ nonce?: string }>) => {
   return (
     <NextThemeProvider
       attribute="class"
@@ -15,6 +15,7 @@ export const ThemeProvider = (props: PropsWithChildren) => {
       enableSystem
       disableTransitionOnChange
       storageKey="@buy-me-a-bit-coffee:theme"
+      nonce={props.nonce}
     >
       {props.children}
     </NextThemeProvider>

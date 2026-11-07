@@ -1,5 +1,7 @@
 type JsonLdProps = {
   data: Record<string, unknown> | Record<string, unknown>[];
+  /** CSP nonce for the inline script tag. */
+  nonce?: string;
 };
 
 // Built from char codes so no raw separator ends up in this source file.
@@ -18,7 +20,7 @@ export const serializeJsonLd = (item: unknown) =>
     .replace(LINE_SEPARATOR, '\\u2028')
     .replace(PARAGRAPH_SEPARATOR, '\\u2029');
 
-export function JsonLd({ data }: JsonLdProps) {
+export function JsonLd({ data, nonce }: JsonLdProps) {
   const items = Array.isArray(data) ? data : [data];
 
   return (
@@ -27,6 +29,9 @@ export function JsonLd({ data }: JsonLdProps) {
         <script
           key={index}
           type="application/ld+json"
+          nonce={nonce}
+          // Browsers hide the nonce attribute after load, so the client sees "".
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(item) }}
         />
       ))}

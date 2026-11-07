@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 
+import { headers } from 'next/headers';
+
 import type { Metadata } from 'next';
 
 import { DonationCard } from '@/modules/donation/components/donation-card';
@@ -10,6 +12,7 @@ import { parseDonationQuery } from '@/modules/donation/parsers/donation-query';
 
 import { JsonLd } from '@/global/components/json-ld';
 import { PageContainer } from '@/global/components/page-container';
+import { NONCE_HEADER } from '@/global/config/security-headers.config';
 import {
   getDonationDisplayName,
   getDonationJsonLd,
@@ -44,10 +47,11 @@ const DonationPage: NextPage<Params, Query> = async ({
   const { identifier, lightning } = parseDonationQuery(await searchParams);
 
   const displayName = getDonationDisplayName(address, identifier);
+  const nonce = (await headers()).get(NONCE_HEADER) ?? undefined;
 
   return (
     <PageContainer>
-      <JsonLd data={getDonationJsonLd(address, displayName)} />
+      <JsonLd data={getDonationJsonLd(address, displayName)} nonce={nonce} />
       <DonationPageHeader />
 
       <main className="px-4 pt-12 pb-6 sm:px-6 md:pt-16">

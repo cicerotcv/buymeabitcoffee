@@ -1,7 +1,10 @@
 import type { NextConfig } from 'next';
 
 import { Env } from '@/env';
-import { getSecurityHeaders } from '@/global/config/security-headers.config';
+import {
+  apiContentSecurityPolicy,
+  getSecurityHeaders,
+} from '@/global/config/security-headers.config';
 
 const params = new URLSearchParams({
   identifier: 'Buy Me a BitCoffee',
@@ -18,6 +21,13 @@ const nextConfig: NextConfig = {
     {
       source: '/:path*',
       headers: getSecurityHeaders(),
+    },
+    {
+      // HTML routes get a per-request nonce policy from the middleware.
+      source: '/api/:path*',
+      headers: [
+        { key: 'Content-Security-Policy', value: apiContentSecurityPolicy },
+      ],
     },
   ],
   rewrites: async () => [

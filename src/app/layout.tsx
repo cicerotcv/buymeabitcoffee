@@ -1,9 +1,11 @@
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { headers } from 'next/headers';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Viewport } from 'next';
 
+import { NONCE_HEADER } from '@/global/config/security-headers.config';
 import { getRootMetadata, seoConfig } from '@/global/config/seo.config';
 import { QueryProvider } from '@/global/contexts/query-provider';
 import { ThemeProvider } from '@/global/contexts/theme-provider';
@@ -39,6 +41,8 @@ async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get(NONCE_HEADER) ?? undefined;
+
   return (
     <html
       lang={seoConfig.lang}
@@ -50,7 +54,7 @@ async function RootLayout({
         className={`${sans.variable} ${heading.variable} ${mono.variable}
           font-sans antialiased`}
       >
-        <ThemeProvider>
+        <ThemeProvider nonce={nonce}>
           <QueryProvider>{children}</QueryProvider>
           <Toaster />
         </ThemeProvider>
