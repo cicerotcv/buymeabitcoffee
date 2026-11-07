@@ -95,7 +95,7 @@ export const BadgeCard = (props: Props) => {
   );
 
   return (
-    <Card variant={props.variant ?? 'glass'}>
+    <Card variant={props.variant ?? 'default'}>
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2">
           <ShieldsIoIcon className="size-5" />
@@ -126,7 +126,9 @@ export const BadgeCard = (props: Props) => {
               description="The right side text for your badge."
             />
 
-            <Button className="col-span-full">Update Badge</Button>
+            <Button variant="outline" className="col-span-full">
+              Update badge
+            </Button>
           </form>
         </FormProvider>
 

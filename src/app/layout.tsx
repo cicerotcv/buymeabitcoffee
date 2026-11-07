@@ -1,4 +1,4 @@
-import { Geist_Mono, Inter } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -12,8 +12,14 @@ import { Toaster } from '$/components/ui/sonner';
 
 import './globals.css';
 
-const interFont = Inter({
-  variable: '--font-inter',
+const sans = Geist({
+  variable: '--font-geist',
+  subsets: ['latin'],
+});
+const heading = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: ['normal', 'italic'],
   subsets: ['latin'],
 });
 const mono = Geist_Mono({
@@ -41,12 +47,12 @@ async function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${interFont.variable} ${mono.variable} font-sans
-          antialiased`}
+        className={`${sans.variable} ${heading.variable} ${mono.variable}
+          font-sans antialiased`}
       >
         <ThemeProvider>
           <QueryProvider>{children}</QueryProvider>
-          <Toaster richColors />
+          <Toaster />
         </ThemeProvider>
 
         <Analytics />

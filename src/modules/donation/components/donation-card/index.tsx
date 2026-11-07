@@ -1,6 +1,6 @@
 import type { VariantProps } from 'class-variance-authority';
-import { QrCode } from 'lucide-react';
 
+import { HashRule, Receipt } from '@/global/components/receipt';
 import { BitcoinIcon } from '@/global/svg/icons/bitcoin';
 import { LightningIcon } from '@/global/svg/icons/lightning';
 
@@ -28,6 +28,9 @@ type Props = {
   lightningAddress?: string;
   identifier: string;
   variant?: VariantProps<typeof cardVariants>['variant'];
+  className?: string;
+  /** Replays the printing reveal when the receipt mounts. */
+  print?: boolean;
 };
 
 export const DonationCard = (props: Props) => {
@@ -41,25 +44,28 @@ export const DonationCard = (props: Props) => {
     ? AddressType.Lightning
     : AddressType.OnChain;
 
-  return (
-    <Card variant={props.variant ?? 'glass'}>
-      <CardHeader className="text-center">
-        <CardTitle className="flex items-center justify-center gap-2">
-          <QrCode className="size-5" />
-          Bitcoin Donation
+  const variant = props.variant ?? 'receipt';
+
+  const content = (
+    <>
+      <CardHeader className="gap-3">
+        <div className="flex items-baseline justify-between">
+          <span className="eyebrow">Receipt</span>
+          <span className="eyebrow">Bitcoin donation</span>
+        </div>
+        <CardTitle className="font-heading text-3xl leading-tight font-normal">
+          {props.identifier}
         </CardTitle>
         <CardDescription>
-          Scan the QR code or copy the address below to send Bitcoin
+          Scan the QR code or copy the address below to send Bitcoin.
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
+        <HashRule />
+
         <Tabs defaultValue={defaultValue} className="gap-4">
-          <TabsList
-            className={cn('w-full', {
-              hidden: singleAddress,
-            })}
-          >
+          <TabsList className={cn('w-full', { hidden: singleAddress })}>
             <TabsTrigger value={AddressType.Lightning} data-brand="lightning">
               <LightningIcon className="text-lightning" />
               Lightning
@@ -86,6 +92,23 @@ export const DonationCard = (props: Props) => {
           </TabsContent>
         </Tabs>
       </CardContent>
+    </>
+  );
+
+  if (variant === 'receipt')
+    return (
+      <Receipt
+        className={props.className}
+        paperClassName="sm:[&>*]:px-6"
+        print={props.print}
+      >
+        {content}
+      </Receipt>
+    );
+
+  return (
+    <Card variant={variant} className={props.className}>
+      {content}
     </Card>
   );
 };

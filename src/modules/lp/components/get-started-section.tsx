@@ -5,27 +5,33 @@ import { Suspense } from 'react';
 import { Skeleton } from '$/components/ui/skeleton';
 
 import { PreviewForm } from './preview';
+import { sectionFrame, SectionHeading } from './section-heading';
 
 export const GetStartedSection = async () => {
   return (
-    <section id="get-started" className="px-0 py-20 min-[400px]:px-2 sm:px-4">
-      <div className="container mx-auto max-w-4xl">
-        <div className="mb-16 text-center">
-          <h2 className="text-foreground mb-4 text-4xl font-bold">
-            Create your page — live preview below
-          </h2>
-          <p className="text-muted-foreground text-xl">
-            Create your donation page in seconds. Works entirely in your
-            browser. No signup required.{' '}
-            <span className="text-btc">No data stored</span>.
-          </p>
-        </div>
-
-        <Suspense
-          fallback={
-            <Skeleton className="border-card aspect-[2/3] w-full rounded-2xl" />
+    <section
+      id="get-started"
+      className="bg-muted scroll-mt-16 border-y py-20 md:py-28"
+    >
+      <div className={sectionFrame}>
+        <SectionHeading
+          className="mb-14"
+          eyebrow="Create your page"
+          title={
+            <>
+              Print your <em>own</em> receipt.
+            </>
           }
-        >
+          lead={
+            <>
+              Create your donation page in seconds. Works entirely in your
+              browser. No signup required.{' '}
+              <span className="text-btc-ink font-medium">No data stored.</span>
+            </>
+          }
+        />
+
+        <Suspense fallback={<Skeleton className="h-[32rem] w-full" />}>
           <PreviewForm />
         </Suspense>
       </div>

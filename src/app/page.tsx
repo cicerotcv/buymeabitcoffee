@@ -8,20 +8,31 @@ import { HowItWorksSection } from '@/modules/lp/components/how-it-works-section'
 
 import { JsonLd } from '@/global/components/json-ld';
 import { PageContainer } from '@/global/components/page-container';
+import { HashRule } from '@/global/components/receipt';
 import { getHomeJsonLd, getHomeMetadata } from '@/global/config/seo.config';
 
 export const metadata = getHomeMetadata();
+
+const SectionRule = () => (
+  <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <HashRule />
+  </div>
+);
 
 function HomePage() {
   return (
     <PageContainer>
       <JsonLd data={getHomeJsonLd()} />
       <Header />
-      <HeroSection />
-      <HowItWorksSection />
-      <FeaturesSection />
-      <GetStartedSection />
-      <FaqSection />
+      <main>
+        <HeroSection />
+        <SectionRule />
+        <HowItWorksSection />
+        <SectionRule />
+        <FeaturesSection />
+        <GetStartedSection />
+        <FaqSection />
+      </main>
       <FooterSection />
     </PageContainer>
   );
