@@ -6,6 +6,7 @@ import { DonationCard } from '@/modules/donation/components/donation-card';
 import { DonationPageFooter } from '@/modules/donation/components/donation-page/footer';
 import { DonationPageHeader } from '@/modules/donation/components/donation-page/header';
 import { DonationPageInstruction } from '@/modules/donation/components/donation-page/instructions';
+import { parseDonationQuery } from '@/modules/donation/parsers/donation-query';
 
 import { JsonLd } from '@/global/components/json-ld';
 import { PageContainer } from '@/global/components/page-container';
@@ -30,7 +31,7 @@ export async function generateMetadata({
   searchParams: Promise<Query>;
 }): Promise<Metadata> {
   const { address } = await params;
-  const { identifier } = await searchParams;
+  const { identifier } = parseDonationQuery(await searchParams);
 
   return getDonationMetadata(address, identifier);
 }
@@ -40,7 +41,7 @@ const DonationPage: NextPage<Params, Query> = async ({
   searchParams,
 }) => {
   const { address } = await params;
-  const { identifier, lightning } = await searchParams;
+  const { identifier, lightning } = parseDonationQuery(await searchParams);
 
   const displayName = getDonationDisplayName(address, identifier);
 

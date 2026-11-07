@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/og';
 
+import { parseDonationQuery } from '@/modules/donation/parsers/donation-query';
+
 import { SvgLogo } from '@/global/svg/project-logo';
 
 export const alt = 'Buy Me a BitCoffee';
@@ -17,7 +19,7 @@ type Props = {
 
 export default async function Image({ params, searchParams }: Props) {
   const { address } = await params;
-  const { identifier } = await searchParams;
+  const { identifier } = parseDonationQuery(await searchParams);
   const name = identifier || `${address.slice(0, 8)}...`;
 
   return new ImageResponse(
